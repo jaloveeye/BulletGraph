@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="colorBulletGray">#D5D5D5</color>
+    <color name="colorBulletYellow">#FAE232</color>
+    <color name="colorBulletDarkOrage">#F8BA00</color>
+    <color name="colorBulletOrange">#FF9300</color>
+    <color name="colorBulletRed">#ED220B</color>
+    <color name="colorBulletDarkRed">#B41700</color>
+    <color name="colorBulletBlue">#00A1FF</color>
+    <color name="colorBulletWhite">#FFFFFF</color>
+    <color name="colorBulletBlack">#000000</color>
+</resources>

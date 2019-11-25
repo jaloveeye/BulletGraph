@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="type_1">
+        <item>정상</item>
+        <item>경도</item>
+        <item>중등도</item>
+        <item>중증</item>
+        <item>말기</item>
+    </string-array>
+
+    <string-array name="type_2">
+        <item>90</item>
+        <item>60</item>
+        <item>30</item>
+        <item>15</item>
+        <item></item>
+    </string-array>
+
+    <string-array name="type_3">
+        <item>1000</item>
+        <item>90</item>
+        <item>60</item>
+        <item>30</item>
+        <item>15</item>
+        <item>0</item>
+    </string-array>
+
+    <string-array name="type_4">
+        <item>정상</item>
+        <item>약양성 +-</item>
+        <item>양성 1+</item>
+        <item>양성 2+</item>
+        <item>양성 3+</item>
+        <item>양성 4+</item>
+    </string-array>
+
+    <string-array name="type_5">
+        <item>15</item>
+        <item>30</item>
+        <item>100</item>
+        <item>300</item>
+        <item>1000</item>
+        <item></item>
+    </string-array>
+
+    <string-array name="type_6">
+        <item>0</item>
+        <item>15</item>
+        <item>30</item>
+        <item>100</item>
+        <item>300</item>
+        <item>1000</item>
+        <item>2000</item>
+    </string-array>
+</resources>
