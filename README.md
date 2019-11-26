@@ -7,19 +7,8 @@ This repository contains `BulletGraph` that provides Bullet Graph Widget for and
 
 ## Features
 
-- Configure 3 different types of Pin Field Views to your app.
-- Allow your users to paste the characters into your Pin Field which no other library provides
-- Support for showing hint in your Pin Fields
-- Customize the number of fields you will be requiring.
-- Highlight in 4 ways - All the fields, Only Current Field, All Completed Fields, None of the fields.
-- Enable or disable cursor to your Pin Fields.
-- Curve the edges in your Square Pin Field view.
-- Customize the distance between your Pin Fields.
-- Set custom distance between your line and text Line Pin Field.
-- Keep the keyboard open or closed after the Text is entered.
-- Mask your passwords properly.
-- Use any type of keyboard you would like for the View.
-- Highly configurable with many attributes for your View.
+- 
+
 
 ## Setup
 
