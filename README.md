@@ -3,7 +3,7 @@
  
 This repository contains `BulletGraph` that provides Bullet Graph Widget for android
 
-
+<img src="images/sample.png"/>
 
 ## Features
 
