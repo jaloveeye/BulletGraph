@@ -7,8 +7,8 @@
         <attr name="title" format="string" />
         <attr name="value" format="integer" />
         <attr name="isASC" format="boolean" />
-        <attr name="Label_1" />
-        <attr name="Label_2" />
-        <attr name="Range" />
+        <attr name="label_1" />
+        <attr name="label_2" />
+        <attr name="range" />
     </declare-styleable>
 </resources>
