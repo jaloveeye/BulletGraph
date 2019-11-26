@@ -36,6 +36,9 @@ class BulletCircle @JvmOverloads constructor(
     private val subTitleSize = 40f
     private var subTitlePaint: Paint
 
+    val labelStartPaint: Paint
+    val labelEndPaint: Paint
+
     init {
         val attributeSet = context.theme.obtainStyledAttributes(attrs, R.styleable.BulletCircle, 0, 0)
 
@@ -75,6 +78,26 @@ class BulletCircle @JvmOverloads constructor(
                     style = Paint.Style.FILL
                     textSize = subTitleSize
                     textAlign = Paint.Align.LEFT
+                    typeface = Typeface.DEFAULT
+                }
+
+            labelStartPaint =
+                Paint().apply {
+                    isAntiAlias = true
+                    color = getResourceIdToColor(R.color.colorBulletBlack)
+                    style = Paint.Style.FILL
+                    textSize = labelSize
+                    textAlign = Paint.Align.LEFT
+                    typeface = Typeface.DEFAULT
+                }
+
+            labelEndPaint =
+                Paint().apply {
+                    isAntiAlias = true
+                    color = getResourceIdToColor(R.color.colorBulletBlack)
+                    style = Paint.Style.FILL
+                    textSize = labelSize
+                    textAlign = Paint.Align.RIGHT
                     typeface = Typeface.DEFAULT
                 }
         } finally {
@@ -148,7 +171,14 @@ class BulletCircle @JvmOverloads constructor(
         val LabelABottom = bottom + labelSize + labelMarginTop
         val LabelBBottom = bottom + labelSize * 2 + labelMarginTop
 
-        for (i in 0 until number.plus(1)) {
+        canvas?.drawText(labelA?.get(0).toString(), ratio / 2f, LabelABottom, labelStartPaint)
+        canvas?.drawText(labelB?.get(0).toString(), ratio / 2f, LabelBBottom, labelStartPaint)
+
+        canvas?.drawText(labelA?.get(number).toString(), number * ratio + ratio / 2f, LabelABottom, labelEndPaint)
+        canvas?.drawText(labelB?.get(number).toString(), number * ratio + ratio / 2f, LabelBBottom, labelEndPaint)
+
+
+        for (i in 1 until number) {
             canvas?.drawText(labelA?.get(i).toString(), i * ratio + ratio / 2f, LabelABottom, labelPaint)
             canvas?.drawText(labelB?.get(i).toString(), i * ratio + ratio / 2f, LabelBBottom, labelPaint)
         }
