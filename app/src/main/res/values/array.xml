@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="graphA_LabelA">
-        <item></item>
+        <item />
         <item>정상</item>
         <item>경도</item>
         <item>중등도</item>
@@ -10,12 +10,12 @@
     </string-array>
 
     <string-array name="graphA_LabelB">
-        <item></item>
+        <item />
         <item>90</item>
         <item>60</item>
         <item>30</item>
         <item>15</item>
-        <item></item>
+        <item />
     </string-array>
 
     <string-array name="graphA_Range">
@@ -28,7 +28,7 @@
     </string-array>
 
     <string-array name="graphB_LabelA">
-        <item></item>
+        <item />
         <item>정상</item>
         <item>약양성 +-</item>
         <item>양성 1+</item>
@@ -38,13 +38,13 @@
     </string-array>
 
     <string-array name="graphB_LabelB">
-        <item></item>
+        <item />
         <item>15</item>
         <item>30</item>
         <item>100</item>
         <item>300</item>
         <item>1000</item>
-        <item></item>
+        <item />
     </string-array>
 
     <string-array name="graphB_Range">
@@ -55,5 +55,40 @@
         <item>300</item>
         <item>1000</item>
         <item>2000</item>
+    </string-array>
+
+    <string-array name="graphC_LabelA">
+        <item />
+        <item>정상</item>
+        <item>주의</item>
+        <item>위험</item>
+    </string-array>
+
+    <string-array name="graphC_LabelB">
+        <item />
+        <item>120mmHg</item>
+        <item>139mmHg</item>
+        <item />
+    </string-array>
+
+    <string-array name="graphC_Range">
+        <item>0</item>
+        <item>120</item>
+        <item>139</item>
+        <item>300</item>
+    </string-array>
+
+    <string-array name="graphD_LabelB">
+        <item />
+        <item>80mmHg</item>
+        <item>89mmHg</item>
+        <item />
+    </string-array>
+
+    <string-array name="graphD_Range">
+        <item>0</item>
+        <item>80</item>
+        <item>89</item>
+        <item>200</item>
     </string-array>
 </resources>

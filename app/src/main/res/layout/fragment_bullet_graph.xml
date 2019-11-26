@@ -9,26 +9,27 @@
     tools:context=".BulletGraphFragment">
 
 
-    <com.herace.bulletgraph.BulletGraph
+    <com.herace.bulletgraph.BulletCircle
         android:id="@+id/bullet_graph_1"
         android:layout_width="300dp"
         android:layout_height="100dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:noOfFields="5"
+        app:noOfFields="3"
         app:bgColor="#FFFFFF"
-        app:title="신사구체여과율:120mL로 정상입니다."
-        app:isWarning="false"
-        app:value="120"
-        app:isASC="false"
-        app:label_1="@array/graphA_LabelA"
-        app:label_2="@array/graphA_LabelB"
-        app:range="@array/graphA_Range"
+        app:title="수축기 혈압"
+        app:subTitle="190mmHg으로 위험군에 해당됩니다."
+        app:isWarning="true"
+        app:value="190"
+        app:isASC="true"
+        app:label_1="@array/graphC_LabelA"
+        app:label_2="@array/graphC_LabelB"
+        app:range="@array/graphC_Range"
     />
 
 
-    <com.herace.bulletgraph.BulletGraph
+    <com.herace.bulletgraph.BulletBlock
         android:id="@+id/bullet_graph_2"
         android:layout_width="400dp"
         android:layout_height="100dp"
@@ -44,5 +45,24 @@
         app:label_1="@array/graphB_LabelA"
         app:label_2="@array/graphB_LabelB"
         app:range="@array/graphB_Range"
+        />
+
+    <com.herace.bulletgraph.BulletCircle
+        android:id="@+id/bullet_graph_3"
+        android:layout_width="400dp"
+        android:layout_height="100dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bullet_graph_2"
+        app:noOfFields="3"
+        app:bgColor="#FFFFFF"
+        app:title="이완기 혈압"
+        app:subTitle="70mmHg으로 정상범위로 안전합니다."
+        app:isWarning="false"
+        app:value="70"
+        app:isASC="true"
+        app:label_1="@array/graphC_LabelA"
+        app:label_2="@array/graphD_LabelB"
+        app:range="@array/graphD_Range"
         />
 </androidx.constraintlayout.widget.ConstraintLayout>

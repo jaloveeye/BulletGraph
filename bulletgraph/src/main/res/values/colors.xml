@@ -12,4 +12,6 @@
     <color name="colorBulletBlue">#00A1FF</color>
     <color name="colorBulletWhite">#FFFFFF</color>
     <color name="colorBulletBlack">#000000</color>
+    <color name="colorBulletCyan">#61CAC8</color>
+    <color name="colorBulletLightRed">#FC637D</color>
 </resources>

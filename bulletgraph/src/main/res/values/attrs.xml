@@ -11,4 +11,7 @@
         <attr name="label_2" />
         <attr name="range" />
     </declare-styleable>
+    <declare-styleable name="BulletCircle">
+        <attr name="subTitle" format="string" />
+    </declare-styleable>
 </resources>

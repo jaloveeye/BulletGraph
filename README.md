@@ -7,7 +7,7 @@ This repository contains `BulletGraph` that provides Bullet Graph Widget for and
 
 ## Features
 
-- 
+- Bullet Block Graph & Circle Graph
 
 
 ## Setup
@@ -33,47 +33,83 @@ allprojects {
 ### Usage
 
 ```xml
-    <com.herace.bulletgraph.BulletGraph
+   <com.herace.bulletgraph.BulletCircle
         android:id="@+id/bullet_graph_1"
         android:layout_width="300dp"
         android:layout_height="100dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:noOfFields="5"
+        app:noOfFields="3"
         app:bgColor="#FFFFFF"
-        app:title="Title"
+        app:title="수축기 혈압"
+        app:subTitle="190mmHg으로 위험군에 해당됩니다."
+        app:isWarning="true"
+        app:value="190"
+        app:isASC="true"
+        app:label_1="@array/graphC_LabelA"
+        app:label_2="@array/graphC_LabelB"
+        app:range="@array/graphC_Range"
+    />
+    <com.herace.bulletgraph.BulletBlock
+        android:id="@+id/bullet_graph_2"
+        android:layout_width="400dp"
+        android:layout_height="100dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bullet_graph_1"
+        app:noOfFields="6"
+        app:bgColor="#FFFFFF"
+        app:title="단백뇨:27mg/dL로 약양성에 해당됩니다."
+        app:isWarning="true"
+        app:value="27"
+        app:isASC="true"
+        app:label_1="@array/graphB_LabelA"
+        app:label_2="@array/graphB_LabelB"
+        app:range="@array/graphB_Range"
+        />
+    <com.herace.bulletgraph.BulletCircle
+        android:id="@+id/bullet_graph_3"
+        android:layout_width="400dp"
+        android:layout_height="100dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bullet_graph_2"
+        app:noOfFields="3"
+        app:bgColor="#FFFFFF"
+        app:title="이완기 혈압"
+        app:subTitle="70mmHg으로 정상범위로 안전합니다."
         app:isWarning="false"
-        app:value="120"
-        app:isASC="false"
-        app:label_1="@array/graphA_LabelA"
-        app:label_2="@array/graphA_LabelB"
-        app:range="@array/graphA_Range"
+        app:value="70"
+        app:isASC="true"
+        app:label_1="@array/graphC_LabelA"
+        app:label_2="@array/graphD_LabelB"
+        app:range="@array/graphD_Range"
+        />
     />
 ```
 
 
 ### Array
 ```xml
-<string-array name="graphA_LabelA">
-        <item></item>
+    <string-array name="graphA_LabelA">
+        <item />
         <item>정상</item>
         <item>경도</item>
         <item>중등도</item>
         <item>중증</item>
         <item>말기</item>
     </string-array>
-
+    
     <string-array name="graphA_LabelB">
-        <item></item>
+        <item />
         <item>90</item>
         <item>60</item>
         <item>30</item>
         <item>15</item>
-        <item></item>
+        <item />
     </string-array>
-
-    <!-- for calculate marker position -->
+    
     <string-array name="graphA_Range">
         <item>200</item>
         <item>90</item>
@@ -81,6 +117,71 @@ allprojects {
         <item>30</item>
         <item>15</item>
         <item>0</item>
+    </string-array>
+
+    <string-array name="graphB_LabelA">
+        <item />
+        <item>정상</item>
+        <item>약양성 +-</item>
+        <item>양성 1+</item>
+        <item>양성 2+</item>
+        <item>양성 3+</item>
+        <item>양성 4+</item>
+    </string-array>
+
+    <string-array name="graphB_LabelB">
+        <item />
+        <item>15</item>
+        <item>30</item>
+        <item>100</item>
+        <item>300</item>
+        <item>1000</item>
+        <item />
+    </string-array>
+
+    <string-array name="graphB_Range">
+        <item>0</item>
+        <item>15</item>
+        <item>30</item>
+        <item>100</item>
+        <item>300</item>
+        <item>1000</item>
+        <item>2000</item>
+    </string-array>
+
+    <string-array name="graphC_LabelA">
+        <item />
+        <item>정상</item>
+        <item>주의</item>
+        <item>위험</item>
+    </string-array>
+
+    <string-array name="graphC_LabelB">
+        <item />
+        <item>120mmHg</item>
+        <item>139mmHg</item>
+        <item />
+    </string-array>
+
+    <string-array name="graphC_Range">
+        <item>0</item>
+        <item>120</item>
+        <item>139</item>
+        <item>300</item>
+    </string-array>
+
+    <string-array name="graphD_LabelB">
+        <item />
+        <item>80mmHg</item>
+        <item>89mmHg</item>
+        <item />
+    </string-array>
+
+    <string-array name="graphD_Range">
+        <item>0</item>
+        <item>80</item>
+        <item>89</item>
+        <item>200</item>
     </string-array>
 
 ```
