@@ -14,4 +14,7 @@
     <declare-styleable name="BulletCircle">
         <attr name="subTitle" format="string" />
     </declare-styleable>
+    <declare-styleable name="BulletTopBottom">
+        <attr name="isTop" format="boolean" />
+    </declare-styleable>
 </resources>

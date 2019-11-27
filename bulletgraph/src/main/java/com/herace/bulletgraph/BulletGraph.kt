@@ -115,7 +115,7 @@ open class BulletGraph @JvmOverloads constructor(
                     color = getResourceIdToColor(R.color.colorBulletBlack)
                     style = Paint.Style.FILL
                     textSize = labelSize
-                    textAlign = Paint.Align.CENTER
+                    textAlign = Paint.Align.LEFT
                     typeface = Typeface.DEFAULT
                 }
 

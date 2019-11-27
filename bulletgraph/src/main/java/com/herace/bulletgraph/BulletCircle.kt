@@ -11,7 +11,7 @@ import java.lang.Exception
 
 /**
  * @author Herace(jaloveeye@gmail.com)
- * Class: BulletGraph
+ * Class: BulletCircle
  * Created by Herace on 2019/11/26.
  * Description:
  */
@@ -209,7 +209,6 @@ class BulletCircle @JvmOverloads constructor(
         }
 
         val markerX = ratio * ratioValue
-//        val widthTemp = mWIDTH / 15
         val widthTemp = 60
         setMarkerRect(widthTemp, markerX, target, ratio, top.toInt())
         if (isWarning) canvas?.drawBitmap(markerRed, null, markerRect, null)

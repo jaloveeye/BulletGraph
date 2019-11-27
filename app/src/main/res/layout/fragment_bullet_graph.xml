@@ -8,34 +8,43 @@
     android:layout_height="match_parent"
     tools:context=".BulletGraphFragment">
 
-
-    <com.herace.bulletgraph.BulletCircle
+    <TextView
+        android:text="@string/bullet_top_bottom"
+        android:id="@+id/title_1"
+        style="@style/SampleTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+    <com.herace.bulletgraph.BulletTopBottom
         android:id="@+id/bullet_graph_1"
         android:layout_width="300dp"
         android:layout_height="100dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:noOfFields="3"
+        app:layout_constraintTop_toBottomOf="@+id/title_1"
         app:bgColor="#FFFFFF"
-        app:title="수축기 혈압"
-        app:subTitle="190mmHg으로 위험군에 해당됩니다."
+        app:title="수축기 혈압:하위30%"
         app:isWarning="true"
-        app:value="190"
-        app:isASC="true"
-        app:label_1="@array/graphC_LabelA"
-        app:label_2="@array/graphC_LabelB"
-        app:range="@array/graphC_Range"
+        app:value="15"
+        app:isTop="false"
     />
 
-
+    <TextView
+        android:text="@string/bullet_block"
+        android:id="@+id/title_2"
+        style="@style/SampleTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bullet_graph_1"
+        />
     <com.herace.bulletgraph.BulletBlock
         android:id="@+id/bullet_graph_2"
         android:layout_width="400dp"
         android:layout_height="100dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bullet_graph_1"
+        app:layout_constraintTop_toBottomOf="@+id/title_2"
         app:noOfFields="6"
         app:bgColor="#FFFFFF"
         app:title="단백뇨:27mg/dL로 약양성에 해당됩니다."
@@ -47,13 +56,21 @@
         app:range="@array/graphB_Range"
         />
 
+    <TextView
+        android:text="@string/bullet_circle"
+        android:id="@+id/title_3"
+        style="@style/SampleTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bullet_graph_2"
+        />
     <com.herace.bulletgraph.BulletCircle
         android:id="@+id/bullet_graph_3"
         android:layout_width="400dp"
         android:layout_height="100dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bullet_graph_2"
+        app:layout_constraintTop_toBottomOf="@+id/title_3"
         app:noOfFields="3"
         app:bgColor="#FFFFFF"
         app:title="이완기 혈압"
