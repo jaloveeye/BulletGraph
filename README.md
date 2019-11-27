@@ -7,7 +7,8 @@ This repository contains `BulletGraph` that provides Bullet Graph Widget for and
 
 ## Features
 
-- Bullet Block Graph & Circle Graph
+- Block Graph, Circle Grpah, TobBottom Graph
+- Calculation a x-coordinates to marker at range string array
 
 
 ## Setup
@@ -26,38 +27,25 @@ allprojects {
 - **App level `build.gradle`**
 ```gradle
 	dependencies {
-	        implementation 'com.github.jaloveeye:BulletGraph:1:0:2'
+	        implementation 'com.github.jaloveeye:BulletGraph:1:0:4'
 	}
 ```
 
 ### Usage
 
 ```xml
-   <com.herace.bulletgraph.BulletCircle
-        android:id="@+id/bullet_graph_1"
+  <com.herace.bulletgraph.BulletTopBottom
         android:layout_width="300dp"
         android:layout_height="100dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:noOfFields="3"
         app:bgColor="#FFFFFF"
-        app:title="수축기 혈압"
-        app:subTitle="190mmHg으로 위험군에 해당됩니다."
+        app:title="수축기 혈압:하위30%"
         app:isWarning="true"
-        app:value="190"
-        app:isASC="true"
-        app:label_1="@array/graphC_LabelA"
-        app:label_2="@array/graphC_LabelB"
-        app:range="@array/graphC_Range"
+        app:value="30"
+        app:isTop="false"
     />
-    <com.herace.bulletgraph.BulletBlock
-        android:id="@+id/bullet_graph_2"
+     <com.herace.bulletgraph.BulletBlock
         android:layout_width="400dp"
         android:layout_height="100dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bullet_graph_1"
         app:noOfFields="6"
         app:bgColor="#FFFFFF"
         app:title="단백뇨:27mg/dL로 약양성에 해당됩니다."
@@ -69,12 +57,8 @@ allprojects {
         app:range="@array/graphB_Range"
         />
     <com.herace.bulletgraph.BulletCircle
-        android:id="@+id/bullet_graph_3"
         android:layout_width="400dp"
         android:layout_height="100dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bullet_graph_2"
         app:noOfFields="3"
         app:bgColor="#FFFFFF"
         app:title="이완기 혈압"

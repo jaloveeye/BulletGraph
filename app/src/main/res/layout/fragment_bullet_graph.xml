@@ -26,7 +26,7 @@
         app:bgColor="#FFFFFF"
         app:title="수축기 혈압:하위30%"
         app:isWarning="true"
-        app:value="15"
+        app:value="30"
         app:isTop="false"
     />
 

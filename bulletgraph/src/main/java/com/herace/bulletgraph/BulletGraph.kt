@@ -5,9 +5,6 @@ import android.view.View
 import android.content.Context
 import android.graphics.*
 import android.os.Build.VERSION.SDK_INT
-import android.util.Log
-import androidx.core.view.marginTop
-import java.lang.Exception
 
 /**
  * @author Herace(jaloveeye@gmail.com)
@@ -60,6 +57,7 @@ open class BulletGraph @JvmOverloads constructor(
     val titleSize = 40f
     var titlePaint: Paint
 
+    var boundRect = Rect(0, 0, 0, 0)
 
     init {
         val attributeSet = context.theme.obtainStyledAttributes(attrs, R.styleable.BulletGraph, 0, 0)
@@ -131,13 +129,18 @@ open class BulletGraph @JvmOverloads constructor(
         else return resources.getColor(resourceId)
     }
 
-
-    open fun setMarkerRect(widthTemp:Int, markerX: Float, target: Int, ratio: Float, top: Int)  {
-        val x = (markerX + target * ratio + ratio / 2f).toInt() - widthTemp/2
+    open fun setMarkerRect(widthTemp:Int, markerX: Float, target: Int, ratio: Float, top: Int, graphMargin: Int)  {
+        val x = (markerX + target * ratio + graphMargin).toInt() - widthTemp/2
         val y = top - widthTemp
         val w = widthTemp + x
         val h = widthTemp + y
 
         markerRect.set(x, y, w, h)
+    }
+
+    open fun getTextWidth(paint: Paint, text: String, rect: Rect) : Int {
+        paint.getTextBounds(text, 0, text.length, rect)
+
+        return rect.width()
     }
 }

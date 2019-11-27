@@ -1,13 +1,8 @@
 package com.herace.bulletgraph
 
 import android.util.AttributeSet
-import android.view.View
 import android.content.Context
 import android.graphics.*
-import android.os.Build.VERSION.SDK_INT
-import android.util.Log
-import androidx.core.view.marginTop
-import java.lang.Exception
 
 /**
  * @author Herace(jaloveeye@gmail.com)
@@ -62,20 +57,21 @@ class BulletBlock @JvmOverloads constructor(
         /**
          * Number of Fields to Graph
          */
+        val graphMargin = 80f
         val number:Int = numberOfFields
-        val ratio: Float = mWIDTH.toFloat() / (number + 1).toFloat()
+        val ratio: Float = (mWIDTH.toFloat() -  graphMargin * 2) / number.toFloat()
 
 
         /**
          * Draw block graph
          */
-        for (i in 0 until number) canvas?.drawRect(i * ratio + ratio / 2f , top, ( i + 1) * ratio + ratio / 2f, bottom, paints[i])
+        for (i in 0 until number) canvas?.drawRect(i * ratio + graphMargin , top, ( i + 1) * ratio + graphMargin, bottom, paints[i])
 
 
         /**
          * Draw Title Text
          */
-        canvas?.drawText(title!!, ratio / 2f, titleSize + 20f, titlePaint)
+        canvas?.drawText(title!!, graphMargin, titleSize + 20f, titlePaint)
 
 
         /**
@@ -85,8 +81,17 @@ class BulletBlock @JvmOverloads constructor(
         val LabelBBottom = bottom + labelSize * 2 + 10f
 
         for (i in 0 until number.plus(1)) {
-            canvas?.drawText(labelA?.get(i).toString(), i * ratio + ratio / 2f, LabelABottom, labelPaint)
-            canvas?.drawText(labelB?.get(i).toString(), i * ratio + ratio / 2f, LabelBBottom, labelPaint)
+            canvas?.drawText(
+                labelA?.get(i).toString(),
+                i * ratio + graphMargin - getTextWidth(labelPaint, labelA?.get(i).toString(), boundRect) / 2,
+                LabelABottom,
+                labelPaint)
+
+            canvas?.drawText(
+                labelB?.get(i).toString(),
+                i * ratio + graphMargin - getTextWidth(labelPaint, labelB?.get(i).toString(), boundRect) / 2,
+                LabelBBottom,
+                labelPaint)
         }
 
         /**
@@ -116,24 +121,8 @@ class BulletBlock @JvmOverloads constructor(
 
         val markerX = ratio * ratioValue
         val widthTemp = mWIDTH / 22
-        setMarkerRect(widthTemp, markerX, target, ratio, top.toInt())
+        setMarkerRect(widthTemp, markerX, target, ratio, top.toInt(), graphMargin.toInt())
         if (isWarning) canvas?.drawBitmap(markerRed, null, markerRect, null)
         else canvas?.drawBitmap(markerBlue, null, markerRect, null)
     }
-//
-//
-//    private fun getResourceIdToColor(resourceId: Int): Int {
-//        if (SDK_INT >= 23) return resources.getColor(resourceId, null)
-//        else return resources.getColor(resourceId)
-//    }
-//
-//
-//    private fun setMarkerRect(widthTemp:Int, markerX: Float, target: Int, ratio: Float, top: Int)  {
-//        val x = (markerX + target * ratio + ratio / 2f).toInt() - widthTemp/2
-//        val y = top - widthTemp
-//        val w = widthTemp + x
-//        val h = widthTemp + y
-//
-//        markerRect.set(x, y, w, h)
-//    }
 }

@@ -1,13 +1,8 @@
 package com.herace.bulletgraph
 
 import android.util.AttributeSet
-import android.view.View
 import android.content.Context
 import android.graphics.*
-import android.os.Build.VERSION.SDK_INT
-import android.util.Log
-import androidx.core.view.marginTop
-import java.lang.Exception
 
 /**
  * @author Herace(jaloveeye@gmail.com)
@@ -134,8 +129,9 @@ class BulletCircle @JvmOverloads constructor(
         /**
          * Number of Fields to Graph
          */
+        val graphMargin = 40f
         val number:Int = numberOfFields
-        val ratio: Float = mWIDTH.toFloat() / (number + 1).toFloat()
+        val ratio: Float = (mWIDTH.toFloat() -  graphMargin * 2) / number.toFloat()
 
 
         /**
@@ -144,14 +140,14 @@ class BulletCircle @JvmOverloads constructor(
          */
         val cornerRadius = 25F
 
-        graphRect.set(ratio / 2f, top, ratio + ratio / 2f + cornerRadius, bottom)
+        graphRect.set(graphMargin, top, ratio + graphMargin + cornerRadius, bottom)
         canvas?.drawRoundRect(graphRect, cornerRadius, cornerRadius, paints[0])
 
-        graphRect.set((number - 1) * ratio + ratio / 2f - cornerRadius, top, ( number ) * ratio + ratio / 2f, bottom)
+        graphRect.set((number - 1) * ratio + graphMargin - cornerRadius, top, ( number ) * ratio + graphMargin, bottom)
         canvas?.drawRoundRect(graphRect, cornerRadius, cornerRadius, paints[number - 1])
 
         for (i in 1 until number.minus(1)) {
-            graphRect.set(i * ratio + ratio / 2f, top, ( i + 1) * ratio + ratio / 2f, bottom)
+            graphRect.set(i * ratio + graphMargin, top, ( i + 1) * ratio + graphMargin, bottom)
             canvas?.drawRoundRect(graphRect, cornerRadius, cornerRadius, paints[i])
         }
 
@@ -160,8 +156,8 @@ class BulletCircle @JvmOverloads constructor(
          * Draw Title Text
          */
         val titleMarginTop = 20f
-        canvas?.drawText(title!!, ratio / 2f, titleSize + titleMarginTop, titlePaint)
-        canvas?.drawText(subTitle!!, ratio / 2f, titleSize + subTitleSize + titleMarginTop * 2, subTitlePaint)
+        canvas?.drawText(title!!, graphMargin, titleSize + titleMarginTop, titlePaint)
+        canvas?.drawText(subTitle!!, graphMargin, titleSize + subTitleSize + titleMarginTop * 2, subTitlePaint)
 
 
         /**
@@ -171,16 +167,23 @@ class BulletCircle @JvmOverloads constructor(
         val LabelABottom = bottom + labelSize + labelMarginTop
         val LabelBBottom = bottom + labelSize * 2 + labelMarginTop
 
-        canvas?.drawText(labelA?.get(0).toString(), ratio / 2f, LabelABottom, labelStartPaint)
-        canvas?.drawText(labelB?.get(0).toString(), ratio / 2f, LabelBBottom, labelStartPaint)
+        canvas?.drawText(labelA?.get(0).toString(), graphMargin, LabelABottom, labelStartPaint)
+        canvas?.drawText(labelB?.get(0).toString(), graphMargin, LabelBBottom, labelStartPaint)
 
-        canvas?.drawText(labelA?.get(number).toString(), number * ratio + ratio / 2f, LabelABottom, labelEndPaint)
-        canvas?.drawText(labelB?.get(number).toString(), number * ratio + ratio / 2f, LabelBBottom, labelEndPaint)
-
+        canvas?.drawText(labelA?.get(number).toString(), number * ratio + graphMargin, LabelABottom, labelEndPaint)
+        canvas?.drawText(labelB?.get(number).toString(), number * ratio + graphMargin, LabelBBottom, labelEndPaint)
 
         for (i in 1 until number) {
-            canvas?.drawText(labelA?.get(i).toString(), i * ratio + ratio / 2f, LabelABottom, labelPaint)
-            canvas?.drawText(labelB?.get(i).toString(), i * ratio + ratio / 2f, LabelBBottom, labelPaint)
+            canvas?.drawText(
+                labelA?.get(i).toString(),
+                i * ratio + graphMargin - getTextWidth(labelPaint, labelA?.get(i).toString(), boundRect) / 2,
+                LabelABottom,
+                labelPaint)
+            canvas?.drawText(
+                labelB?.get(i).toString(),
+                i * ratio + graphMargin - getTextWidth(labelPaint, labelB?.get(i).toString(), boundRect) / 2,
+                LabelBBottom,
+                labelPaint)
         }
 
         /**
@@ -210,15 +213,15 @@ class BulletCircle @JvmOverloads constructor(
 
         val markerX = ratio * ratioValue
         val widthTemp = 60
-        setMarkerRect(widthTemp, markerX, target, ratio, top.toInt())
+        setMarkerRect(widthTemp, markerX, target, ratio, top.toInt(), graphMargin.toInt())
         if (isWarning) canvas?.drawBitmap(markerRed, null, markerRect, null)
         else canvas?.drawBitmap(markerBlue, null, markerRect, null)
     }
 
 
-    override fun setMarkerRect(widthTemp:Int, markerX: Float, target: Int, ratio: Float, top: Int)  {
-        val x = (markerX + target * ratio + ratio / 2f).toInt() - widthTemp/2
-        val y = top - widthTemp / 2 + 10 // (bottom - top)/2 ???
+    override fun setMarkerRect(widthTemp:Int, markerX: Float, target: Int, ratio: Float, top: Int, graphMargin: Int)  {
+        val x = (markerX + target * ratio + graphMargin).toInt() - widthTemp/2
+        val y = top - widthTemp / 2 + 10
         val w = widthTemp + x
         val h = widthTemp + y
 

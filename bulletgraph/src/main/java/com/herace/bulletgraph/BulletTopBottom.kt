@@ -1,13 +1,8 @@
 package com.herace.bulletgraph
 
 import android.util.AttributeSet
-import android.view.View
 import android.content.Context
 import android.graphics.*
-import android.os.Build.VERSION.SDK_INT
-import android.util.Log
-import androidx.core.view.marginTop
-import java.lang.Exception
 
 /**
  * @author Herace(jaloveeye@gmail.com)
@@ -157,8 +152,8 @@ class BulletTopBottom @JvmOverloads constructor(
 
         val labelTop = top - labelSize
         val labelValueText = "${value}%"
-        var labelValueX = if (isTop) graphMargin + graphWidth.toFloat() * (100f - value) / 100 - labelSize/2
-                                else graphMargin + graphWidth.toFloat() * value / 100 - labelSize/2
+        var labelValueX = if (isTop) graphMargin + graphWidth.toFloat() * (100f - value) / 100 - getTextWidth(labelPaint,labelValueText, boundRect) / 2
+                                else graphMargin + graphWidth.toFloat() * value / 100 - getTextWidth(labelPaint,labelValueText, boundRect) / 2
         canvas?.drawText(labelValueText, labelValueX, labelTop, labelBottomPaint)
 
         val markerSize = 60
