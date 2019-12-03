@@ -18,7 +18,7 @@
         />
     <com.herace.bulletgraph.BulletTopBottom
         android:id="@+id/bullet_graph_1"
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="100dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -28,7 +28,7 @@
         app:isWarning="true"
         app:value="30"
         app:isTop="false"
-    />
+        />
 
     <TextView
         android:text="@string/bullet_block"
@@ -40,7 +40,7 @@
         />
     <com.herace.bulletgraph.BulletBlock
         android:id="@+id/bullet_graph_2"
-        android:layout_width="400dp"
+        android:layout_width="match_parent"
         android:layout_height="100dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -66,8 +66,8 @@
         />
     <com.herace.bulletgraph.BulletCircle
         android:id="@+id/bullet_graph_3"
-        android:layout_width="400dp"
-        android:layout_height="100dp"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title_3"

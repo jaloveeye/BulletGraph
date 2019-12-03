@@ -32,32 +32,50 @@ open class BulletGraph @JvmOverloads constructor(
     var bgPaint = Paint()
 
     var minWidth = 200
-    var minHeight = 100
+    var minHeight = 120
 
     var numberOfFields = 6
+
+    /**
+     * 변화 가능한  attrs
+     */
+    var title: String? = ""
+        set(value) {
+            field = value
+            invalidate()
+        }
+    var value = 0
+        set(value) {
+            field = value
+            invalidate()
+        }
+
+    var isWarning: Boolean = false
+        set(value) {
+            field = value
+            invalidate()
+        }
+
+    var isASC: Boolean = false
         set(value) {
             field = value
             invalidate()
         }
 
     var bgColor: String? = null
-    var isWarning: Boolean = false
-    var title: String? = ""
-    var value: Int = 0
-    var isASC: Boolean = false
     var labelA: Array<CharSequence>? = null
     var labelB: Array<CharSequence>? = null
     var range: Array<CharSequence>? = null
 
+    val titleSize = resources.getDimension(R.dimen.title_text_size)
+    val labelSize = resources.getDimension(R.dimen.label_text_size)
+
     var markerRect: Rect = Rect(0, 0, 0, 0)
-
-    val labelSize = 40f
     val labelPaint: Paint
-
-    val titleSize = 40f
     var titlePaint: Paint
-
     var boundRect = Rect(0, 0, 0, 0)
+
+    val graphMargin = resources.getDimension(R.dimen.graph_margin)
 
     init {
         val attributeSet = context.theme.obtainStyledAttributes(attrs, R.styleable.BulletGraph, 0, 0)
@@ -94,8 +112,8 @@ open class BulletGraph @JvmOverloads constructor(
             paints.add(paintRed)
             paints.add(paintDarkRed)
 
-            var titleColor = getResourceIdToColor(R.color.colorBulletBlack)
-            if (isWarning) titleColor = getResourceIdToColor(R.color.colorBulletRed)
+            var titleColor = getResourceIdToColor(R.color.colorTextBlack)
+            if (isWarning) titleColor = getResourceIdToColor(R.color.colorWarning)
 
             titlePaint =
                 Paint().apply {
@@ -104,7 +122,7 @@ open class BulletGraph @JvmOverloads constructor(
                     style = Paint.Style.FILL
                     textSize = titleSize
                     textAlign = Paint.Align.LEFT
-                    typeface = Typeface.DEFAULT
+                    typeface = Typeface.DEFAULT_BOLD
                 }
 
             labelPaint =

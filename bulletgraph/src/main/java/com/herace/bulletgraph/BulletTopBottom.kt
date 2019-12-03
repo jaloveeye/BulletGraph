@@ -27,7 +27,11 @@ class BulletTopBottom @JvmOverloads constructor(
 
     private var graphRect: RectF = RectF(0F, 0F, 0F, 0F)
 
-    private var isTop: Boolean = false
+    var isTop: Boolean = false
+        set(value) {
+            field = value
+            invalidate()
+        }
 
     val labelTopPaint: Paint
     val labelBottomPaint: Paint
@@ -50,19 +54,6 @@ class BulletTopBottom @JvmOverloads constructor(
 
             paints.add(paintCyan)
             paints.add(paintLightRed)
-
-            var titleColor = getResourceIdToColor(R.color.colorBulletGray)
-            if (isWarning) titleColor = getResourceIdToColor(R.color.colorBulletLightRed)
-
-            titlePaint =
-                Paint().apply {
-                    isAntiAlias = true
-                    color = titleColor
-                    style = Paint.Style.FILL
-                    textSize = titleSize
-                    textAlign = Paint.Align.LEFT
-                    typeface = Typeface.DEFAULT
-                }
 
             labelTopPaint =
                 Paint().apply {
@@ -94,10 +85,10 @@ class BulletTopBottom @JvmOverloads constructor(
         /**
          * Set min width & min height
          */
-        var mWIDTH = minWidth
-        var mHEIGHT = minHeight
-        if (width > minWidth) mWIDTH = width
-        if (height > minHeight) mHEIGHT = height
+        var mWIDTH = width
+        var mHEIGHT = height
+        if (width < minWidth) mWIDTH = minWidth
+        if (height < 100) mHEIGHT = minHeight
 
 
         /**
@@ -110,14 +101,13 @@ class BulletTopBottom @JvmOverloads constructor(
          * Set Top & Bottom to Graph
          */
         val top = mHEIGHT.toFloat() * 0.5f
-        val bottom = top + 20f
+        val bottom = top + resources.getDimension(R.dimen.graph_height)
 
 
         /**
          * Draw graph
          */
-        val cornerRadius = 25F
-        val graphMargin = 40f
+        val cornerRadius = 0F
 
         val graphWidth = mWIDTH - graphMargin * 2
 
@@ -134,7 +124,18 @@ class BulletTopBottom @JvmOverloads constructor(
         /**
          * Draw Title Text
          */
-        val titleMarginTop = 40f
+        var titleColor = getResourceIdToColor(R.color.colorTextBlack)
+        if (isWarning) titleColor = getResourceIdToColor(R.color.colorWarning)
+        titlePaint =
+            Paint().apply {
+                isAntiAlias = true
+                color = titleColor
+                style = Paint.Style.FILL
+                textSize = titleSize
+                textAlign = Paint.Align.LEFT
+                typeface = Typeface.DEFAULT_BOLD
+            }
+        val titleMarginTop = resources.getDimension(R.dimen.title_margin_top)
         titlePaint.color = if (isWarning) getResourceIdToColor(R.color.colorBulletLightRed) else getResourceIdToColor(R.color.colorBulletGray)
         canvas?.drawText(title!!, graphMargin, titleSize + titleMarginTop, titlePaint)
 
@@ -142,7 +143,7 @@ class BulletTopBottom @JvmOverloads constructor(
         /**
          * Draw axis label
          */
-        val labelMarginTop = 40f
+        val labelMarginTop = resources.getDimension(R.dimen.label_margin_top)
         val labelBottom = bottom + labelSize + labelMarginTop
 
         val labelTopText = "상위"
@@ -152,14 +153,37 @@ class BulletTopBottom @JvmOverloads constructor(
 
         val labelTop = top - labelSize
         val labelValueText = "${value}%"
-        var labelValueX = if (isTop) graphMargin + graphWidth.toFloat() * (100f - value) / 100 - getTextWidth(labelPaint,labelValueText, boundRect) / 2
+        val labelValueX = if (isTop) graphMargin + graphWidth.toFloat() * (100f - value) / 100 - getTextWidth(labelPaint,labelValueText, boundRect) / 2
                                 else graphMargin + graphWidth.toFloat() * value / 100 - getTextWidth(labelPaint,labelValueText, boundRect) / 2
         canvas?.drawText(labelValueText, labelValueX, labelTop, labelBottomPaint)
 
-        val markerSize = 60
-        val markerCenter = top.toInt() + (bottom - top).toInt()
-        markerRect.set(labelValueX.toInt(), markerCenter - markerSize/2 - 10, labelValueX.toInt() + markerSize, markerCenter + markerSize/2 - 10)
-        if (isTop) canvas?.drawBitmap(markerBlue, null, markerRect, null)
-        else canvas?.drawBitmap(markerRed, null, markerRect, null)
+        val temp =  getTextWidth(labelPaint,labelValueText, boundRect) / 2
+        if (isTop) drawCircle(canvas, labelValueX + temp, top, bottom, R.color.colorNormal)
+        else drawCircle(canvas, labelValueX + temp, top, bottom, R.color.colorWarning)
+    }
+
+    private fun drawCircle(canvas: Canvas?, markerX: Float, top: Float, bottom: Float, color: Int) {
+
+        val x = markerX
+        val y = top + (bottom - top) / 2
+
+        val radius = resources.getDimension(R.dimen.graph_height)
+        val radius2 = resources.getDimension(R.dimen.circle_radius)
+
+        val paint1 = Paint()
+        paint1.color = getResourceIdToColor(R.color.colorBulletWhite)
+        paint1.strokeWidth = resources.getDimension(R.dimen.graph_height)
+        paint1.style = Paint.Style.FILL
+        paint1.isAntiAlias = true
+        paint1.isDither = true
+        canvas?.drawCircle(x, y, radius, paint1)
+
+        val paint2 = Paint()
+        paint2.color = getResourceIdToColor(color)
+        paint2.strokeWidth = resources.getDimension(R.dimen.graph_height)
+        paint2.style = Paint.Style.STROKE
+        paint2.isAntiAlias = true
+        paint2.isDither = true
+        canvas?.drawCircle(x, y, radius2, paint2)
     }
 }

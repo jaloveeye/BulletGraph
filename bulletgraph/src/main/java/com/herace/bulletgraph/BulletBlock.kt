@@ -57,7 +57,7 @@ class BulletBlock @JvmOverloads constructor(
         /**
          * Number of Fields to Graph
          */
-        val graphMargin = 80f
+        val graphMargin = resources.getDimension(R.dimen.graph_margin_2)
         val number:Int = numberOfFields
         val ratio: Float = (mWIDTH.toFloat() -  graphMargin * 2) / number.toFloat()
 
@@ -121,7 +121,7 @@ class BulletBlock @JvmOverloads constructor(
 
         val markerX = ratio * ratioValue
         val widthTemp = mWIDTH / 22
-        setMarkerRect(widthTemp, markerX, target, ratio, top.toInt(), graphMargin.toInt())
+        setMarkerRect(widthTemp.toInt(), markerX, target, ratio, top.toInt(), graphMargin.toInt())
         if (isWarning) canvas?.drawBitmap(markerRed, null, markerRect, null)
         else canvas?.drawBitmap(markerBlue, null, markerRect, null)
     }

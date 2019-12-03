@@ -19,6 +19,10 @@ class BulletCircle @JvmOverloads constructor(
     private var paintLightRed = Paint()
 
     private var subTitle: String? = ""
+        set(value) {
+            field = value
+            invalidate()
+        }
 
     /**
      * make image to marker
@@ -28,8 +32,8 @@ class BulletCircle @JvmOverloads constructor(
 
     private var graphRect: RectF = RectF(0F, 0F, 0F, 0F)
 
-    private val subTitleSize = 40f
-    private var subTitlePaint: Paint
+    private val subTitleSize = resources.getDimension(R.dimen.title_text_size)
+    private lateinit var subTitlePaint: Paint
 
     val labelStartPaint: Paint
     val labelEndPaint: Paint
@@ -41,8 +45,8 @@ class BulletCircle @JvmOverloads constructor(
             subTitle = attributeSet.getString(R.styleable.BulletCircle_subTitle)
             if (subTitle.isNullOrBlank()) subTitle = ""
 
-            paintCyan.color = getResourceIdToColor(R.color.colorBulletCyan)
-            paintLightRed.color = getResourceIdToColor(R.color.colorBulletLightRed)
+            paintCyan.color = getResourceIdToColor(R.color.colorNormal)
+            paintLightRed.color = getResourceIdToColor(R.color.colorWarning)
 
             paints.remove(paintYellow)
             paints.remove(paintOrange)
@@ -53,35 +57,13 @@ class BulletCircle @JvmOverloads constructor(
             paints.add(paintCyan)
             paints.add(paintLightRed)
 
-            var titleColor = getResourceIdToColor(R.color.colorBulletGray)
-            if (isWarning) titleColor = getResourceIdToColor(R.color.colorBulletLightRed)
-
-            titlePaint =
-                Paint().apply {
-                    isAntiAlias = true
-                    color = titleColor
-                    style = Paint.Style.FILL
-                    textSize = titleSize
-                    textAlign = Paint.Align.LEFT
-                    typeface = Typeface.DEFAULT
-                }
-
-            subTitlePaint =
-                Paint().apply {
-                    isAntiAlias = true
-                    color = titleColor
-                    style = Paint.Style.FILL
-                    textSize = subTitleSize
-                    textAlign = Paint.Align.LEFT
-                    typeface = Typeface.DEFAULT
-                }
 
             labelStartPaint =
                 Paint().apply {
                     isAntiAlias = true
                     color = getResourceIdToColor(R.color.colorBulletBlack)
                     style = Paint.Style.FILL
-                    textSize = labelSize
+                    textSize = resources.getDimension(R.dimen.label_text_size)
                     textAlign = Paint.Align.LEFT
                     typeface = Typeface.DEFAULT
                 }
@@ -91,7 +73,7 @@ class BulletCircle @JvmOverloads constructor(
                     isAntiAlias = true
                     color = getResourceIdToColor(R.color.colorBulletBlack)
                     style = Paint.Style.FILL
-                    textSize = labelSize
+                    textSize = resources.getDimension(R.dimen.label_text_size)
                     textAlign = Paint.Align.RIGHT
                     typeface = Typeface.DEFAULT
                 }
@@ -106,10 +88,10 @@ class BulletCircle @JvmOverloads constructor(
         /**
          * Set min width & min height
          */
-        var mWIDTH = minWidth
-        var mHEIGHT = minHeight
-        if (width > minWidth) mWIDTH = width
-        if (height > minHeight) mHEIGHT = height
+        var mWIDTH = width
+        var mHEIGHT = height
+        if (width < minWidth) mWIDTH = minWidth
+        if (height < minHeight) mHEIGHT = minHeight
 
 
         /**
@@ -122,14 +104,12 @@ class BulletCircle @JvmOverloads constructor(
          * Set Top & Bottom to Graph
          */
         val top = mHEIGHT.toFloat() * 0.5f
-//        val bottom = mHEIGHT.toFloat() * 0.6f
-        val bottom = top + 20f
+        val bottom = top + resources.getDimension(R.dimen.graph_height)
 
 
         /**
          * Number of Fields to Graph
          */
-        val graphMargin = 40f
         val number:Int = numberOfFields
         val ratio: Float = (mWIDTH.toFloat() -  graphMargin * 2) / number.toFloat()
 
@@ -138,7 +118,7 @@ class BulletCircle @JvmOverloads constructor(
          * Draw graph
          * 처음, 마지막 먼저 그리고 가운데를 그려야 함.
          */
-        val cornerRadius = 25F
+        val cornerRadius = 0F
 
         graphRect.set(graphMargin, top, ratio + graphMargin + cornerRadius, bottom)
         canvas?.drawRoundRect(graphRect, cornerRadius, cornerRadius, paints[0])
@@ -155,7 +135,27 @@ class BulletCircle @JvmOverloads constructor(
         /**
          * Draw Title Text
          */
-        val titleMarginTop = 20f
+        var titleColor = getResourceIdToColor(R.color.colorTextBlack)
+        if (isWarning) titleColor = getResourceIdToColor(R.color.colorWarning)
+        titlePaint =
+            Paint().apply {
+                isAntiAlias = true
+                color = titleColor
+                style = Paint.Style.FILL
+                textSize = titleSize
+                textAlign = Paint.Align.LEFT
+                typeface = Typeface.DEFAULT_BOLD
+            }
+        subTitlePaint =
+            Paint().apply {
+                isAntiAlias = true
+                color = titleColor
+                style = Paint.Style.FILL
+                textSize = resources.getDimension(R.dimen.title_text_size)
+                textAlign = Paint.Align.LEFT
+                typeface = Typeface.DEFAULT
+            }
+        val titleMarginTop = resources.getDimension(R.dimen.title_margin_top)
         canvas?.drawText(title!!, graphMargin, titleSize + titleMarginTop, titlePaint)
         canvas?.drawText(subTitle!!, graphMargin, titleSize + subTitleSize + titleMarginTop * 2, subTitlePaint)
 
@@ -163,7 +163,7 @@ class BulletCircle @JvmOverloads constructor(
         /**
          * Draw axis label
          */
-        val labelMarginTop = 40f
+        val labelMarginTop = resources.getDimension(R.dimen.label_margin_top)
         val LabelABottom = bottom + labelSize + labelMarginTop
         val LabelBBottom = bottom + labelSize * 2 + labelMarginTop
 
@@ -212,19 +212,32 @@ class BulletCircle @JvmOverloads constructor(
         }
 
         val markerX = ratio * ratioValue
-        val widthTemp = 60
-        setMarkerRect(widthTemp, markerX, target, ratio, top.toInt(), graphMargin.toInt())
-        if (isWarning) canvas?.drawBitmap(markerRed, null, markerRect, null)
-        else canvas?.drawBitmap(markerBlue, null, markerRect, null)
+        if (isWarning) drawCircle(canvas, markerX, target, ratio, top, bottom, graphMargin.toInt(), R.color.colorWarning)
+        else drawCircle(canvas, markerX, target, ratio, top, bottom, graphMargin.toInt(), R.color.colorNormal)
     }
 
+    private fun drawCircle(canvas: Canvas?, markerX: Float, target: Int, ratio: Float, top: Float, bottom: Float, graphMargin: Int, color: Int) {
 
-    override fun setMarkerRect(widthTemp:Int, markerX: Float, target: Int, ratio: Float, top: Int, graphMargin: Int)  {
-        val x = (markerX + target * ratio + graphMargin).toInt() - widthTemp/2
-        val y = top - widthTemp / 2 + 10
-        val w = widthTemp + x
-        val h = widthTemp + y
+        val x = markerX + target * ratio + graphMargin
+        val y = top + (bottom - top) / 2
 
-        markerRect.set(x, y, w, h)
+        val radius = resources.getDimension(R.dimen.graph_height)
+        val radius2 = resources.getDimension(R.dimen.circle_radius)
+
+        val paint1 = Paint()
+        paint1.color = getResourceIdToColor(R.color.colorBulletWhite)
+        paint1.strokeWidth = resources.getDimension(R.dimen.graph_height)
+        paint1.style = Paint.Style.FILL
+        paint1.isAntiAlias = true
+        paint1.isDither = true
+        canvas?.drawCircle(x, y, radius, paint1)
+
+        val paint2 = Paint()
+        paint2.color = getResourceIdToColor(color)
+        paint2.strokeWidth = resources.getDimension(R.dimen.graph_height)
+        paint2.style = Paint.Style.STROKE
+        paint2.isAntiAlias = true
+        paint2.isDither = true
+        canvas?.drawCircle(x, y, radius2, paint2)
     }
 }

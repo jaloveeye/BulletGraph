@@ -14,4 +14,9 @@
     <color name="colorBulletBlack">#000000</color>
     <color name="colorBulletCyan">#61CAC8</color>
     <color name="colorBulletLightRed">#FC637D</color>
+    <color name="colorWarning">#FF647D</color>
+    <color name="colorNormal">#62CBC9</color>
+    <color name="colorGray">#D9D8D6</color>
+    <color name="colorTextBlack">#595757</color>
+    <color name="colorLabelBlack">#000000</color>
 </resources>
