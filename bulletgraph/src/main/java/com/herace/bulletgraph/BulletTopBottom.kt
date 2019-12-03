@@ -136,7 +136,6 @@ class BulletTopBottom @JvmOverloads constructor(
                 typeface = Typeface.DEFAULT_BOLD
             }
         val titleMarginTop = resources.getDimension(R.dimen.title_margin_top)
-        titlePaint.color = if (isWarning) getResourceIdToColor(R.color.colorBulletLightRed) else getResourceIdToColor(R.color.colorBulletGray)
         canvas?.drawText(title!!, graphMargin, titleSize + titleMarginTop, titlePaint)
 
 
