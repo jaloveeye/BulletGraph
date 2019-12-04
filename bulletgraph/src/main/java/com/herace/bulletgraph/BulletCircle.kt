@@ -136,7 +136,7 @@ class BulletCircle @JvmOverloads constructor(
          * Draw Title Text
          */
         var titleColor = getResourceIdToColor(R.color.colorTextBlack)
-        if (isWarning) titleColor = getResourceIdToColor(R.color.colorWarning)
+        if (warning!!.toBoolean()) titleColor = getResourceIdToColor(R.color.colorWarning)
         titlePaint =
             Paint().apply {
                 isAntiAlias = true
@@ -212,7 +212,7 @@ class BulletCircle @JvmOverloads constructor(
         }
 
         val markerX = ratio * ratioValue
-        if (isWarning) drawCircle(canvas, markerX, target, ratio, top, bottom, graphMargin.toInt(), R.color.colorWarning)
+        if (warning!!.toBoolean()) drawCircle(canvas, markerX, target, ratio, top, bottom, graphMargin.toInt(), R.color.colorWarning)
         else drawCircle(canvas, markerX, target, ratio, top, bottom, graphMargin.toInt(), R.color.colorNormal)
     }
 

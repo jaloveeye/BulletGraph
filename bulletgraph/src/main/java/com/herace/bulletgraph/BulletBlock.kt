@@ -122,7 +122,7 @@ class BulletBlock @JvmOverloads constructor(
         val markerX = ratio * ratioValue
         val widthTemp = mWIDTH / 22
         setMarkerRect(widthTemp.toInt(), markerX, target, ratio, top.toInt(), graphMargin.toInt())
-        if (isWarning) canvas?.drawBitmap(markerRed, null, markerRect, null)
+        if (warning!!.toBoolean()) canvas?.drawBitmap(markerRed, null, markerRect, null)
         else canvas?.drawBitmap(markerBlue, null, markerRect, null)
     }
 }

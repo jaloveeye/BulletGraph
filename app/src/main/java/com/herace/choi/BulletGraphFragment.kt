@@ -34,6 +34,6 @@ class BulletGraphFragment : Fragment() {
         return VIEW
     }
 
-    fun getTestString(): String { return "texttext" }
+    fun getTestString(): String {return  "true" }
 }
 

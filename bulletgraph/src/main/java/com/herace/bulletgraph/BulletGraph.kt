@@ -50,7 +50,13 @@ open class BulletGraph @JvmOverloads constructor(
             invalidate()
         }
 
-    var isWarning: Boolean = false
+//    var isWarning: Boolean = false
+//        set(value) {
+//            field = value
+//            invalidate()
+//        }
+
+    var warning: String? = ""
         set(value) {
             field = value
             invalidate()
@@ -61,6 +67,7 @@ open class BulletGraph @JvmOverloads constructor(
             field = value
             invalidate()
         }
+
 
     var bgColor: String? = null
     var labelA: Array<CharSequence>? = null
@@ -83,9 +90,12 @@ open class BulletGraph @JvmOverloads constructor(
         try {
             numberOfFields = attributeSet.getInt(R.styleable.BulletGraph_noOfFields, numberOfFields)
             bgColor = attributeSet.getString(R.styleable.BulletGraph_bgColor)
-            isWarning = attributeSet.getBoolean(R.styleable.BulletGraph_isWarning, isWarning)
+            warning = attributeSet.getString(R.styleable.BulletGraph_warning)
+            if (warning.isNullOrBlank()) warning = "false"
+
             title = attributeSet.getString(R.styleable.BulletGraph_title)
             if (title.isNullOrBlank()) title = ""
+
             value = attributeSet.getInt(R.styleable.BulletGraph_value, value)
             isASC = attributeSet.getBoolean(R.styleable.BulletGraph_isASC, isASC)
 
@@ -113,7 +123,7 @@ open class BulletGraph @JvmOverloads constructor(
             paints.add(paintDarkRed)
 
             var titleColor = getResourceIdToColor(R.color.colorTextBlack)
-            if (isWarning) titleColor = getResourceIdToColor(R.color.colorWarning)
+            if (warning!!.toBoolean()) titleColor = getResourceIdToColor(R.color.colorWarning)
 
             titlePaint =
                 Paint().apply {
