@@ -18,7 +18,7 @@ class BulletCircle @JvmOverloads constructor(
     private var paintCyan = Paint()
     private var paintLightRed = Paint()
 
-    private var subTitle: String? = ""
+    var subTitle: String? = ""
         set(value) {
             field = value
             invalidate()

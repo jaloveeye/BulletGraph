@@ -34,30 +34,6 @@ class BulletGraphFragment : Fragment() {
         return VIEW
     }
 
-    override fun onStart() {
-        super.onStart()
-
-        timer = object: CountDownTimer(60000, 100) {
-            override fun onTick(millisUntilFinished: Long) {
-
-                if (value < 100) {
-                    value = value + 1
-
-                    bullet_graph_3.value = value
-
-                    bullet_graph_3.isWarning = !bullet_graph_3.isWarning
-
-                    bullet_graph_1.value = value
-                    bullet_graph_1.isWarning = !bullet_graph_1.isWarning
-                    bullet_graph_1.isTop = !bullet_graph_1.isTop
-
-                } else timer?.cancel()
-
-            }
-            override fun onFinish() {
-            }
-        }
-        timer?.start()
-    }
+    fun getTestString(): String { return "texttext" }
 }
 
