@@ -5,6 +5,7 @@ import android.view.View
 import android.content.Context
 import android.graphics.*
 import android.os.Build.VERSION.SDK_INT
+import android.util.Log
 
 /**
  * @author Herace(jaloveeye@gmail.com)
@@ -28,6 +29,8 @@ open class BulletGraph @JvmOverloads constructor(
     var paintRed = Paint()
     var paintDarkRed = Paint()
     var paintBlue = Paint()
+
+    var paintColor = Paint()
 
     var bgPaint = Paint()
 
@@ -73,6 +76,7 @@ open class BulletGraph @JvmOverloads constructor(
     var labelA: Array<CharSequence>? = null
     var labelB: Array<CharSequence>? = null
     var range: Array<CharSequence>? = null
+    var colorArray : Array<CharSequence>? = null
 
     val titleSize = resources.getDimension(R.dimen.title_text_size)
     val labelSize = resources.getDimension(R.dimen.label_text_size)
@@ -102,25 +106,40 @@ open class BulletGraph @JvmOverloads constructor(
             labelA = attributeSet.getTextArray(R.styleable.BulletGraph_label_1)
             labelB = attributeSet.getTextArray(R.styleable.BulletGraph_label_2)
             range = attributeSet.getTextArray(R.styleable.BulletGraph_range)
+            colorArray = attributeSet.getTextArray(R.styleable.BulletGraph_colorArray)
 
+            println("range ${range?.get(0)}")
+            println("colorArray $colorArray")
             /**
              * Setting Paint
              */
-            paintWhite.color = getResourceIdToColor(R.color.colorBulletWhite)
-            paintGray.color = getResourceIdToColor(R.color.colorBulletGray)
-            paintYellow.color = getResourceIdToColor(R.color.colorBulletYellow)
-            paintOrange.color = getResourceIdToColor(R.color.colorBulletOrange)
-            paintDarkOragne.color = getResourceIdToColor(R.color.colorBulletDarkOrage)
-            paintRed.color = getResourceIdToColor(R.color.colorBulletRed)
-            paintDarkRed.color = getResourceIdToColor(R.color.colorBulletDarkRed)
-            paintBlue.color = getResourceIdToColor(R.color.colorBulletBlue)
+            if(colorArray == null) {
+                paintWhite.color = getResourceIdToColor(R.color.colorBulletWhite)
+                paintGray.color = getResourceIdToColor(R.color.colorBulletGray)
+                paintYellow.color = getResourceIdToColor(R.color.colorBulletYellow)
+                paintOrange.color = getResourceIdToColor(R.color.colorBulletOrange)
+                paintDarkOragne.color = getResourceIdToColor(R.color.colorBulletDarkOrage)
+                paintRed.color = getResourceIdToColor(R.color.colorBulletRed)
+                paintDarkRed.color = getResourceIdToColor(R.color.colorBulletDarkRed)
+                paintBlue.color = getResourceIdToColor(R.color.colorBulletBlue)
 
-            paints.add(paintGray)
-            paints.add(paintYellow)
-            paints.add(paintOrange)
-            paints.add(paintDarkOragne)
-            paints.add(paintRed)
-            paints.add(paintDarkRed)
+                paints.add(paintGray)
+                paints.add(paintYellow)
+                paints.add(paintOrange)
+                paints.add(paintDarkOragne)
+                paints.add(paintRed)
+                paints.add(paintDarkRed)
+            }else {
+                for (i in 0 until numberOfFields) {
+                    val paint = Paint()
+
+                    Log.d("BulletGraph Test", colorArray?.get(i).toString())
+
+                    paint.color = Color.parseColor(colorArray?.get(i).toString())
+                    paints.add(paint)
+                }
+            }
+
 
             var titleColor = getResourceIdToColor(R.color.colorTextBlack)
             if (warning!!.toBoolean()) titleColor = getResourceIdToColor(R.color.colorWarning)

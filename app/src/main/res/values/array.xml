@@ -91,4 +91,11 @@
         <item>89</item>
         <item>200</item>
     </string-array>
+
+
+    <string-array name="color">
+        <item>#008577</item>
+        <item>#ED220B</item>
+        <item>#FC637D</item>
+    </string-array>
 </resources>

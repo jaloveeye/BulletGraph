@@ -86,6 +86,7 @@
         app:label_1="@array/graphC_LabelA"
         app:label_2="@array/graphD_LabelB"
         app:range="@array/graphD_Range"
+        app:colorArray="@array/color"
         />
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
