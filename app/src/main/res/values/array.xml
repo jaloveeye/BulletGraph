@@ -98,4 +98,34 @@
         <item>#ED220B</item>
         <item>#FC637D</item>
     </string-array>
+
+
+    <!-- Melancholia -->
+    <string-array name="melancholia_label">
+        <item />
+        <item>정상</item>
+        <item>주의</item>
+        <item>경고</item>
+        <item>위험</item>
+    </string-array>
+    <string-array name="melancholia_sub_label">
+        <item />
+        <item>0-4점</item>
+        <item>5-9점</item>
+        <item>10-19점</item>
+        <item />
+    </string-array>
+    <string-array name="melancholia_range">
+        <item>30</item>
+        <item>19</item>
+        <item>9</item>
+        <item>4</item>
+        <item>0</item>
+    </string-array>
+    <string-array name="melancholia_color">
+        <item>#d9d8d6</item>
+        <item>#62cbc9</item>
+        <item>#ff647d</item>
+        <item>#665cc7</item>
+    </string-array>
 </resources>

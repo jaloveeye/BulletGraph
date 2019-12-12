@@ -193,7 +193,7 @@ class BulletCircle @JvmOverloads constructor(
         var ratioValue = 0f
         for (i in 0 until range?.size?.minus(1)!!) {
             if (isASC) {
-                if (value >= Integer.parseInt(range?.get(i).toString()) && value <  Integer.parseInt(range?.get(i + 1).toString())) {
+                if (value >= Integer.parseInt(range?.get(i).toString()) && value <=  Integer.parseInt(range?.get(i + 1).toString())) {
                     target = i
                     val startVal =  Integer.parseInt(range?.get(i + 1).toString()).toFloat()
                     val endVal = Integer.parseInt(range?.get(i).toString()).toFloat()
@@ -201,7 +201,7 @@ class BulletCircle @JvmOverloads constructor(
                     break
                 }
             } else {
-                if (value < Integer.parseInt(range?.get(i).toString()) && value >=  Integer.parseInt(range?.get(i + 1).toString())) {
+                if (value <= Integer.parseInt(range?.get(i).toString()) && value >=  Integer.parseInt(range?.get(i + 1).toString())) {
                     target = i
                     val startVal =  Integer.parseInt(range?.get(i).toString()).toFloat()
                     val endVal = Integer.parseInt(range?.get(i + 1).toString()).toFloat()
