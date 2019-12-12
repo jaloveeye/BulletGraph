@@ -191,6 +191,7 @@ class BulletCircle @JvmOverloads constructor(
          */
         var target = 0
         var ratioValue = 0f
+        var markerColor = R.color.colorNormal
         for (i in 0 until range?.size?.minus(1)!!) {
             if (isASC) {
                 if (value >= Integer.parseInt(range?.get(i).toString()) && value <=  Integer.parseInt(range?.get(i + 1).toString())) {
@@ -198,6 +199,7 @@ class BulletCircle @JvmOverloads constructor(
                     val startVal =  Integer.parseInt(range?.get(i + 1).toString()).toFloat()
                     val endVal = Integer.parseInt(range?.get(i).toString()).toFloat()
                     ratioValue = (value.toFloat() - endVal) / (startVal - endVal)
+                    markerColor = paints[i].color
                     break
                 }
             } else {
@@ -206,14 +208,16 @@ class BulletCircle @JvmOverloads constructor(
                     val startVal =  Integer.parseInt(range?.get(i).toString()).toFloat()
                     val endVal = Integer.parseInt(range?.get(i + 1).toString()).toFloat()
                     ratioValue = 1F - (value.toFloat() - endVal) / (startVal - endVal)
+                    markerColor = paints[i].color
                     break
                 }
             }
         }
 
         val markerX = ratio * ratioValue
-        if (warning!!.toBoolean()) drawCircle(canvas, markerX, target, ratio, top, bottom, graphMargin.toInt(), R.color.colorWarning)
-        else drawCircle(canvas, markerX, target, ratio, top, bottom, graphMargin.toInt(), R.color.colorNormal)
+        drawCircle(canvas, markerX, target, ratio, top, bottom, graphMargin.toInt(), markerColor)
+//        if (warning!!.toBoolean()) drawCircle(canvas, markerX, target, ratio, top, bottom, graphMargin.toInt(), R.color.colorWarning)
+//        else drawCircle(canvas, markerX, target, ratio, top, bottom, graphMargin.toInt(), R.color.colorNormal)
     }
 
     private fun drawCircle(canvas: Canvas?, markerX: Float, target: Int, ratio: Float, top: Float, bottom: Float, graphMargin: Int, color: Int) {
@@ -233,7 +237,8 @@ class BulletCircle @JvmOverloads constructor(
         canvas?.drawCircle(x, y, radius, paint1)
 
         val paint2 = Paint()
-        paint2.color = getResourceIdToColor(color)
+//        paint2.color = getResourceIdToColor(color)
+        paint2.color = color
         paint2.strokeWidth = resources.getDimension(R.dimen.graph_height)
         paint2.style = Paint.Style.STROKE
         paint2.isAntiAlias = true
