@@ -63,8 +63,10 @@ open class BulletGraph @JvmOverloads constructor(
 
     var warning: String? = ""
         set(value) {
-            field = value
-            invalidate()
+            if (value != null) {
+                field = value
+                invalidate()
+            }
         }
 
     var isASC: Boolean = false

@@ -22,8 +22,10 @@ class BulletTopBottom @JvmOverloads constructor(
 
     var topbottom: String? = ""
         set(value) {
-            field = value
-            invalidate()
+            if (value != null) {
+                field = value
+                invalidate()
+            }
         }
 
     val labelTopPaint: Paint
