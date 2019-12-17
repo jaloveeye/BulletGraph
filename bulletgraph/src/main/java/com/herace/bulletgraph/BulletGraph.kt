@@ -49,8 +49,10 @@ open class BulletGraph @JvmOverloads constructor(
         }
     var value = 0
         set(value) {
-            field = value
-            invalidate()
+            if (value != null) {
+                field = value
+                invalidate()
+            }
         }
 
 //    var isWarning: Boolean = false
@@ -92,8 +94,13 @@ open class BulletGraph @JvmOverloads constructor(
         val attributeSet = context.theme.obtainStyledAttributes(attrs, R.styleable.BulletGraph, 0, 0)
 
         try {
+
+            // TODO : attributeSet 의 null 처리
             numberOfFields = attributeSet.getInt(R.styleable.BulletGraph_noOfFields, numberOfFields)
+
+
             bgColor = attributeSet.getString(R.styleable.BulletGraph_bgColor)
+
             warning = attributeSet.getString(R.styleable.BulletGraph_warning)
             if (warning.isNullOrBlank()) warning = "false"
 

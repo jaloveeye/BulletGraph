@@ -20,8 +20,10 @@ class BulletCircle @JvmOverloads constructor(
 
     var subTitle: String? = ""
         set(value) {
-            field = value
-            invalidate()
+            if (value != null) {
+                field = value
+                invalidate()
+            }
         }
 
     /**
