@@ -88,5 +88,33 @@
         app:colorArray="@array/melancholia_color"
         app:range="@array/melancholia_range"
         />
+
+    <TextView
+        android:text="@string/bullet_circle2"
+        android:id="@+id/title_4"
+        style="@style/SampleTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bullet_graph_3"
+        />
+    <com.herace.bulletgraph.BulletCircle2
+        android:id="@+id/bullet_graph_4"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_4"
+        app:noOfFields="4"
+        app:bgColor="#FFFFFF"
+        app:title="이완기 혈압"
+        app:subTitle="70mmHg으로 정상범위로 안전합니다."
+        app:warning="false"
+        app:value="10"
+        app:isASC="true"
+        app:label_1="@array/melancholia_label"
+        app:label_2="@array/melancholia_sub_label"
+        app:colorArray="@array/melancholia_color"
+        app:range="@array/melancholia_range"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
