@@ -156,7 +156,7 @@ class BulletEmptyCircle @JvmOverloads constructor(
         if (title != null) canvas?.drawText(title!!, graphMargin, titleSize + titleMarginTop, titlePaint)
 
 
-        if (comment != null) canvas?.drawText(comment!!, graphMargin, titleSize * 2 + titleMarginTop, commentPaint)
+        if (comment != null) canvas?.drawText(comment!!, graphMargin, (titleSize  + titleMarginTop) * 2, commentPaint)
 
         /**
          * Draw axis label
