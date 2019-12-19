@@ -23,13 +23,29 @@ class BulletEmptyCircle @JvmOverloads constructor(
 
     private var graphRect: RectF = RectF(0F, 0F, 0F, 0F)
 
+    var comment: String? = ""
+        set(value) {
+            if (value != null) {
+                field = value
+                invalidate()
+            }
+        }
+
     val labelTopPaint: Paint
     val labelBottomPaint: Paint
+    val commentPaint: Paint
 
     init {
         val attributeSet = context.theme.obtainStyledAttributes(attrs, R.styleable.BulletTopBottom, 0, 0)
 
         try {
+            comment = attributeSet.getString(R.styleable.BulletTopBottom_comment)
+            if (comment.isNullOrBlank()) comment = null
+
+            title = attributeSet.getString(R.styleable.BulletGraph_title)
+            if (title.isNullOrBlank()) title = null
+
+
             paintCyan.color = getResourceIdToColor(R.color.colorBulletCyan)
             paintLightRed.color = getResourceIdToColor(R.color.colorBulletLightRed)
 
@@ -61,6 +77,19 @@ class BulletEmptyCircle @JvmOverloads constructor(
                     textAlign = Paint.Align.LEFT
                     typeface = Typeface.DEFAULT
                 }
+
+            var commentColor = getResourceIdToColor(R.color.colorTextBlack)
+            if (warning!!.toBoolean()) commentColor = getResourceIdToColor(R.color.colorWarning)
+
+            commentPaint =
+                Paint().apply {
+                    isAntiAlias = true
+                    color = commentColor
+                    style = Paint.Style.FILL
+                    textSize = titleSize
+                    textAlign = Paint.Align.LEFT
+                    typeface = Typeface.DEFAULT
+                }
         } finally {
             attributeSet.recycle()
         }
@@ -87,7 +116,10 @@ class BulletEmptyCircle @JvmOverloads constructor(
         /**
          * Set Top & Bottom to Graph
          */
-        val top = mHEIGHT.toFloat() * 0.5f
+        var graphTop: Float
+        if (comment != null) graphTop = 0.65f
+        else graphTop = 0.5f
+        val top = mHEIGHT.toFloat() * graphTop
         val bottom = top + resources.getDimension(R.dimen.graph_height)
 
 
@@ -106,6 +138,25 @@ class BulletEmptyCircle @JvmOverloads constructor(
         graphRect.set(0f + graphMargin, top, (graphWidth.toFloat()) * value / 100 + graphMargin, bottom)
         canvas?.drawRoundRect(graphRect, cornerRadius, cornerRadius, paint)
 
+        /**
+         * Draw Title Text
+         */
+        var titleColor = getResourceIdToColor(R.color.colorTextBlack)
+        if (warning!!.toBoolean()) titleColor = getResourceIdToColor(R.color.colorWarning)
+        titlePaint =
+            Paint().apply {
+                isAntiAlias = true
+                color = titleColor
+                style = Paint.Style.FILL
+                textSize = titleSize
+                textAlign = Paint.Align.LEFT
+                typeface = Typeface.DEFAULT_BOLD
+            }
+        val titleMarginTop = resources.getDimension(R.dimen.title_margin_top)
+        if (title != null) canvas?.drawText(title!!, graphMargin, titleSize + titleMarginTop, titlePaint)
+
+
+        if (comment != null) canvas?.drawText(comment!!, graphMargin, titleSize * 2 + titleMarginTop, commentPaint)
 
         /**
          * Draw axis label

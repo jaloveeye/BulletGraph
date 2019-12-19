@@ -31,7 +31,6 @@ class BulletTopBottom @JvmOverloads constructor(
     val labelTopPaint: Paint
     val labelBottomPaint: Paint
 
-
     init {
         val attributeSet = context.theme.obtainStyledAttributes(attrs, R.styleable.BulletTopBottom, 0, 0)
 

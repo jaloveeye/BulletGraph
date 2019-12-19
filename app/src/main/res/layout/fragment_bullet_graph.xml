@@ -24,7 +24,7 @@
     <com.herace.bulletgraph.BulletTopBottom
         android:id="@+id/bullet_graph_1"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="120dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title_1"
@@ -128,13 +128,15 @@
     <com.herace.bulletgraph.BulletEmptyCircle
         android:id="@+id/bullet_graph_5"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="110dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title_5"
         app:bgColor="#FFFFFF"
         app:warning="true"
         app:value="7"
+        app:comment="comment"
+        app:title="title"
         />
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
