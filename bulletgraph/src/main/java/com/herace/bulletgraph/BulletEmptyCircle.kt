@@ -33,7 +33,7 @@ class BulletEmptyCircle @JvmOverloads constructor(
 
     val labelTopPaint: Paint
     val labelBottomPaint: Paint
-    val commentPaint: Paint
+
 
     init {
         val attributeSet = context.theme.obtainStyledAttributes(attrs, R.styleable.BulletTopBottom, 0, 0)
@@ -78,18 +78,7 @@ class BulletEmptyCircle @JvmOverloads constructor(
                     typeface = Typeface.DEFAULT
                 }
 
-            var commentColor = getResourceIdToColor(R.color.colorTextBlack)
-            if (warning!!.toBoolean()) commentColor = getResourceIdToColor(R.color.colorWarning)
 
-            commentPaint =
-                Paint().apply {
-                    isAntiAlias = true
-                    color = commentColor
-                    style = Paint.Style.FILL
-                    textSize = titleSize
-                    textAlign = Paint.Align.LEFT
-                    typeface = Typeface.DEFAULT
-                }
         } finally {
             attributeSet.recycle()
         }
@@ -155,6 +144,16 @@ class BulletEmptyCircle @JvmOverloads constructor(
         val titleMarginTop = resources.getDimension(R.dimen.title_margin_top)
         if (title != null) canvas?.drawText(title!!, graphMargin, titleSize + titleMarginTop, titlePaint)
 
+        val commentPaint: Paint
+        commentPaint =
+            Paint().apply {
+                isAntiAlias = true
+                color = titleColor
+                style = Paint.Style.FILL
+                textSize = titleSize
+                textAlign = Paint.Align.LEFT
+                typeface = Typeface.DEFAULT
+            }
 
         if (comment != null) canvas?.drawText(comment!!, graphMargin, (titleSize  + titleMarginTop) * 2, commentPaint)
 
