@@ -175,6 +175,7 @@ open class BulletGraph @JvmOverloads constructor(
 
             bgPaint.color = Color.parseColor(bgColor)
 
+
         } finally {
             attributeSet.recycle()
         }

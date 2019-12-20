@@ -23,6 +23,15 @@ class BulletEmptyCircle @JvmOverloads constructor(
 
     private var graphRect: RectF = RectF(0F, 0F, 0F, 0F)
 
+    var value2: String? = ""
+        set(value) {
+            if (value != null) {
+                field = value
+                invalidate()
+            }
+        }
+
+
     var comment: String? = ""
         set(value) {
             if (value != null) {
@@ -31,20 +40,23 @@ class BulletEmptyCircle @JvmOverloads constructor(
             }
         }
 
+
     val labelTopPaint: Paint
     val labelBottomPaint: Paint
 
-
     init {
-        val attributeSet = context.theme.obtainStyledAttributes(attrs, R.styleable.BulletTopBottom, 0, 0)
+        val attributeSet = context.theme.obtainStyledAttributes(attrs, R.styleable.BulletEmptyCircle, 0, 0)
 
         try {
-            comment = attributeSet.getString(R.styleable.BulletTopBottom_comment)
-            if (comment.isNullOrBlank()) comment = null
-
             title = attributeSet.getString(R.styleable.BulletGraph_title)
             if (title.isNullOrBlank()) title = null
 
+            value2 = attributeSet.getString(R.styleable.BulletEmptyCircle_value2)
+            if (value2.isNullOrBlank()) value2 = ""
+
+
+            comment = attributeSet.getString(R.styleable.BulletEmptyCircle_comment)
+            if (comment.isNullOrBlank()) comment = null
 
             paintCyan.color = getResourceIdToColor(R.color.colorBulletCyan)
             paintLightRed.color = getResourceIdToColor(R.color.colorBulletLightRed)
@@ -161,12 +173,16 @@ class BulletEmptyCircle @JvmOverloads constructor(
          * Draw axis label
          */
         val labelTop = top - labelSize
-        val labelValueText = "${value}%"
-        val labelValueX =graphMargin + graphWidth.toFloat() * value / 100 - getTextWidth(labelPaint,labelValueText, boundRect) / 2
-        canvas?.drawText(labelValueText, labelValueX, labelTop, labelBottomPaint)
 
-        val temp =  getTextWidth(labelPaint,labelValueText, boundRect) / 2
-        drawCircle(canvas, labelValueX + temp, top, bottom, R.color.colorWarning)
+        if (value2 != null) {
+            val valueInt = value2!!.toDouble().toInt()
+            val labelValueText = "${value2}%"
+            val labelValueX = graphMargin + graphWidth.toFloat() * valueInt / 100 - getTextWidth(labelPaint,labelValueText, boundRect) / 2
+            canvas?.drawText(labelValueText, labelValueX, labelTop, labelBottomPaint)
+
+            val temp =  getTextWidth(labelPaint,labelValueText, boundRect) / 2
+            drawCircle(canvas, labelValueX + temp, top, bottom, R.color.colorWarning)
+        }
     }
 
     private fun drawCircle(canvas: Canvas?, markerX: Float, top: Float, bottom: Float, color: Int) {

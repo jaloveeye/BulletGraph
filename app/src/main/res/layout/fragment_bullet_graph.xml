@@ -134,7 +134,7 @@
         app:layout_constraintTop_toBottomOf="@+id/title_5"
         app:bgColor="#FFFFFF"
         app:warning="true"
-        app:value="7"
+        app:value2="7.2"
         app:comment="comment"
         app:title="title"
         />

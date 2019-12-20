@@ -17,6 +17,9 @@
     </declare-styleable>
     <declare-styleable name="BulletTopBottom">
         <attr name="topbottom" format="string" />
+    </declare-styleable>
+    <declare-styleable name="BulletEmptyCircle">
+        <attr name="value2" format="string" />
         <attr name="comment" format="string" />
     </declare-styleable>
 </resources>
