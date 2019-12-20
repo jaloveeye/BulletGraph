@@ -3,6 +3,8 @@ package com.herace.bulletgraph
 import android.util.AttributeSet
 import android.content.Context
 import android.graphics.*
+import android.util.Log
+import java.lang.Exception
 
 /**
  * @author Herace(jaloveeye@gmail.com)
@@ -77,107 +79,139 @@ class BulletTopBottom @JvmOverloads constructor(
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
 
-        /**
-         * Set min width & min height
-         */
-        var mWIDTH = width
-        var mHEIGHT = height
-        if (width < minWidth) mWIDTH = minWidth
-        if (height < 100) mHEIGHT = minHeight
+        try {
+            /**
+             * Set min width & min height
+             */
+            var mWIDTH = width
+            var mHEIGHT = height
+            if (width < minWidth) mWIDTH = minWidth
+            if (height < 100) mHEIGHT = minHeight
 
 
-        /**
-         * Draw Background Color
-         */
-        canvas?.drawRect(0.0F, 0.0f, mWIDTH.toFloat(), mHEIGHT.toFloat(), bgPaint)
+            /**
+             * Draw Background Color
+             */
+            canvas?.drawRect(0.0F, 0.0f, mWIDTH.toFloat(), mHEIGHT.toFloat(), bgPaint)
 
 
-        /**
-         * Set Top & Bottom to Graph
-         */
-        val top = mHEIGHT.toFloat() * 0.5f
-        val bottom = top + resources.getDimension(R.dimen.graph_height)
+            /**
+             * Set Top & Bottom to Graph
+             */
+            val top = mHEIGHT.toFloat() * 0.5f
+            val bottom = top + resources.getDimension(R.dimen.graph_height)
 
 
-        /**
-         * Draw graph
-         */
-        val cornerRadius = 0F
+            /**
+             * Draw graph
+             */
+            val cornerRadius = 0F
 
-        val graphWidth = mWIDTH - graphMargin * 2
+            val graphWidth = mWIDTH - graphMargin * 2
 
-        graphRect.set(0f + graphMargin, top, graphWidth + graphMargin, bottom)
-        canvas?.drawRoundRect(graphRect, cornerRadius, cornerRadius, paints[0])
+            graphRect.set(0f + graphMargin, top, graphWidth + graphMargin, bottom)
+            canvas?.drawRoundRect(graphRect, cornerRadius, cornerRadius, paints[0])
 
-        val paint = if(topbottom!!.toBoolean()) paints[1] else paints[2]
+            val paint = if (topbottom!!.toBoolean()) paints[1] else paints[2]
 
-        if (topbottom!!.toBoolean()) graphRect.set(graphWidth - (graphWidth.toFloat() * value / 100) + graphMargin, top, graphWidth + graphMargin, bottom)
-        else graphRect.set(0f + graphMargin, top, (graphWidth.toFloat()) * value / 100 + graphMargin, bottom)
-        canvas?.drawRoundRect(graphRect, cornerRadius, cornerRadius, paint)
-
-
-        /**
-         * Draw Title Text
-         */
-        var titleColor = getResourceIdToColor(R.color.colorTextBlack)
-        if (warning!!.toBoolean()) titleColor = getResourceIdToColor(R.color.colorWarning)
-        titlePaint =
-            Paint().apply {
-                isAntiAlias = true
-                color = titleColor
-                style = Paint.Style.FILL
-                textSize = titleSize
-                textAlign = Paint.Align.LEFT
-                typeface = Typeface.DEFAULT_BOLD
-            }
-        val titleMarginTop = resources.getDimension(R.dimen.title_margin_top)
-        canvas?.drawText(title!!, graphMargin, titleSize + titleMarginTop, titlePaint)
+            if (topbottom!!.toBoolean()) graphRect.set(
+                graphWidth - (graphWidth.toFloat() * value / 100) + graphMargin,
+                top,
+                graphWidth + graphMargin,
+                bottom
+            )
+            else graphRect.set(
+                0f + graphMargin,
+                top,
+                (graphWidth.toFloat()) * value / 100 + graphMargin,
+                bottom
+            )
+            canvas?.drawRoundRect(graphRect, cornerRadius, cornerRadius, paint)
 
 
-        /**
-         * Draw axis label
-         */
-        val labelMarginTop = resources.getDimension(R.dimen.label_margin_top)
-        val labelBottom = bottom + labelSize + labelMarginTop
+            /**
+             * Draw Title Text
+             */
+            var titleColor = getResourceIdToColor(R.color.colorTextBlack)
+            if (warning!!.toBoolean()) titleColor = getResourceIdToColor(R.color.colorWarning)
+            titlePaint =
+                Paint().apply {
+                    isAntiAlias = true
+                    color = titleColor
+                    style = Paint.Style.FILL
+                    textSize = titleSize
+                    textAlign = Paint.Align.LEFT
+                    typeface = Typeface.DEFAULT_BOLD
+                }
+            val titleMarginTop = resources.getDimension(R.dimen.title_margin_top)
+            canvas?.drawText(title!!, graphMargin, titleSize + titleMarginTop, titlePaint)
 
-        val labelTopText = "상위"
-        val labelBottomText = "하위"
-        canvas?.drawText(labelBottomText, graphMargin, labelBottom, labelBottomPaint)
-        canvas?.drawText(labelTopText, mWIDTH - graphMargin, labelBottom, labelTopPaint)
 
-        val labelTop = top - labelSize
-        val labelValueText = "${value}%"
-        val labelValueX = if (topbottom!!.toBoolean()) graphMargin + graphWidth.toFloat() * (100f - value) / 100 - getTextWidth(labelPaint,labelValueText, boundRect) / 2
-                                else graphMargin + graphWidth.toFloat() * value / 100 - getTextWidth(labelPaint,labelValueText, boundRect) / 2
-        canvas?.drawText(labelValueText, labelValueX, labelTop, labelBottomPaint)
+            /**
+             * Draw axis label
+             */
+            val labelMarginTop = resources.getDimension(R.dimen.label_margin_top)
+            val labelBottom = bottom + labelSize + labelMarginTop
 
-        val temp =  getTextWidth(labelPaint,labelValueText, boundRect) / 2
-        if (topbottom!!.toBoolean()) drawCircle(canvas, labelValueX + temp, top, bottom, R.color.colorNormal)
-        else drawCircle(canvas, labelValueX + temp, top, bottom, R.color.colorWarning)
+            val labelTopText = "상위"
+            val labelBottomText = "하위"
+            canvas?.drawText(labelBottomText, graphMargin, labelBottom, labelBottomPaint)
+            canvas?.drawText(labelTopText, mWIDTH - graphMargin, labelBottom, labelTopPaint)
+
+            val labelTop = top - labelSize
+            val labelValueText = "${value}%"
+            val labelValueX =
+                if (topbottom!!.toBoolean()) graphMargin + graphWidth.toFloat() * (100f - value) / 100 - getTextWidth(
+                    labelPaint,
+                    labelValueText,
+                    boundRect
+                ) / 2
+                else graphMargin + graphWidth.toFloat() * value / 100 - getTextWidth(
+                    labelPaint,
+                    labelValueText,
+                    boundRect
+                ) / 2
+            canvas?.drawText(labelValueText, labelValueX, labelTop, labelBottomPaint)
+
+            val temp = getTextWidth(labelPaint, labelValueText, boundRect) / 2
+            if (topbottom!!.toBoolean()) drawCircle(
+                canvas,
+                labelValueX + temp,
+                top,
+                bottom,
+                R.color.colorNormal
+            )
+            else drawCircle(canvas, labelValueX + temp, top, bottom, R.color.colorWarning)
+        } catch (e: Exception) {
+            Log.e("Bullet Graph", e.message)
+        }
     }
 
     private fun drawCircle(canvas: Canvas?, markerX: Float, top: Float, bottom: Float, color: Int) {
+        try {
+            val x = markerX
+            val y = top + (bottom - top) / 2
 
-        val x = markerX
-        val y = top + (bottom - top) / 2
+            val radius = resources.getDimension(R.dimen.graph_height)
+            val radius2 = resources.getDimension(R.dimen.circle_radius)
 
-        val radius = resources.getDimension(R.dimen.graph_height)
-        val radius2 = resources.getDimension(R.dimen.circle_radius)
+            val paint1 = Paint()
+            paint1.color = getResourceIdToColor(R.color.colorBulletWhite)
+            paint1.strokeWidth = resources.getDimension(R.dimen.graph_height)
+            paint1.style = Paint.Style.FILL
+            paint1.isAntiAlias = true
+            paint1.isDither = true
+            canvas?.drawCircle(x, y, radius, paint1)
 
-        val paint1 = Paint()
-        paint1.color = getResourceIdToColor(R.color.colorBulletWhite)
-        paint1.strokeWidth = resources.getDimension(R.dimen.graph_height)
-        paint1.style = Paint.Style.FILL
-        paint1.isAntiAlias = true
-        paint1.isDither = true
-        canvas?.drawCircle(x, y, radius, paint1)
-
-        val paint2 = Paint()
-        paint2.color = getResourceIdToColor(color)
-        paint2.strokeWidth = resources.getDimension(R.dimen.graph_height)
-        paint2.style = Paint.Style.STROKE
-        paint2.isAntiAlias = true
-        paint2.isDither = true
-        canvas?.drawCircle(x, y, radius2, paint2)
+            val paint2 = Paint()
+            paint2.color = getResourceIdToColor(color)
+            paint2.strokeWidth = resources.getDimension(R.dimen.graph_height)
+            paint2.style = Paint.Style.STROKE
+            paint2.isAntiAlias = true
+            paint2.isDither = true
+            canvas?.drawCircle(x, y, radius2, paint2)
+        } catch (e: Exception) {
+            Log.e("Bullet Graph", e.message)
+        }
     }
 }

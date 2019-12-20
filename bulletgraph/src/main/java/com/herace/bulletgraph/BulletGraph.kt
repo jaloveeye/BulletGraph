@@ -6,6 +6,7 @@ import android.content.Context
 import android.graphics.*
 import android.os.Build.VERSION.SDK_INT
 import android.util.Log
+import java.lang.Exception
 
 /**
  * @author Herace(jaloveeye@gmail.com)
@@ -187,12 +188,17 @@ open class BulletGraph @JvmOverloads constructor(
     }
 
     open fun setMarkerRect(widthTemp:Int, markerX: Float, target: Int, ratio: Float, top: Int, graphMargin: Int)  {
-        val x = (markerX + target * ratio + graphMargin).toInt() - widthTemp/2
-        val y = top - widthTemp
-        val w = widthTemp + x
-        val h = widthTemp + y
 
-        markerRect.set(x, y, w, h)
+        try {
+            val x = (markerX + target * ratio + graphMargin).toInt() - widthTemp/2
+            val y = top - widthTemp
+            val w = widthTemp + x
+            val h = widthTemp + y
+
+            markerRect.set(x, y, w, h)
+        } catch (e: Exception) {
+            Log.e("BulletGraph", e.message)
+        }
     }
 
     open fun getTextWidth(paint: Paint, text: String, rect: Rect) : Int {
