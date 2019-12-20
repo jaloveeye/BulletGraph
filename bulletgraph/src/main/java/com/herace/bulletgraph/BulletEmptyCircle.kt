@@ -136,9 +136,6 @@ class BulletEmptyCircle @JvmOverloads constructor(
 
         val paint = paints[2]
 
-        graphRect.set(0f + graphMargin, top, (graphWidth.toFloat()) * value / 100 + graphMargin, bottom)
-        canvas?.drawRoundRect(graphRect, cornerRadius, cornerRadius, paint)
-
         /**
          * Draw Title Text
          */
@@ -176,6 +173,8 @@ class BulletEmptyCircle @JvmOverloads constructor(
 
         if (value2 != null) {
             val valueInt = value2!!.toDouble().toInt()
+            graphRect.set(0f + graphMargin, top, (graphWidth.toFloat()) * valueInt / 100 + graphMargin, bottom)
+            canvas?.drawRoundRect(graphRect, cornerRadius, cornerRadius, paint)
             val labelValueText = "${value2}%"
             val labelValueX = graphMargin + graphWidth.toFloat() * valueInt / 100 - getTextWidth(labelPaint,labelValueText, boundRect) / 2
             canvas?.drawText(labelValueText, labelValueX, labelTop, labelBottomPaint)
