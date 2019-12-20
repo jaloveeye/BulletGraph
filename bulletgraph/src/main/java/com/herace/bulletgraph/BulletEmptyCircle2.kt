@@ -40,7 +40,7 @@ class BulletEmptyCircle2 @JvmOverloads constructor(
             }
         }
 
-    var labelStart: String? = ""
+    var start: String? = ""
         set(value) {
             if (value != null) {
                 field = value
@@ -48,7 +48,7 @@ class BulletEmptyCircle2 @JvmOverloads constructor(
             }
         }
 
-    var labelEnd: String? = ""
+    var end: String? = ""
         set(value) {
             if (value != null) {
                 field = value
@@ -70,11 +70,11 @@ class BulletEmptyCircle2 @JvmOverloads constructor(
             value3 = attributeSet.getString(R.styleable.BulletEmptyCircle2_value3)
             if (value3.isNullOrBlank()) value3 = ""
 
-            labelStart = attributeSet.getString(R.styleable.BulletEmptyCircle2_start)
-            if (labelStart.isNullOrBlank()) labelStart = ""
+            start = attributeSet.getString(R.styleable.BulletEmptyCircle2_start)
+            if (start.isNullOrBlank()) start = ""
 
-            labelEnd = attributeSet.getString(R.styleable.BulletEmptyCircle2_end)
-            if (labelEnd.isNullOrBlank()) labelEnd = ""
+            end = attributeSet.getString(R.styleable.BulletEmptyCircle2_end)
+            if (end.isNullOrBlank()) end = ""
 
 
             comment = attributeSet.getString(R.styleable.BulletEmptyCircle_comment)
@@ -179,8 +179,8 @@ class BulletEmptyCircle2 @JvmOverloads constructor(
         val labelMarginTop = resources.getDimension(R.dimen.label_margin_top)
         val labelBottom = bottom + labelSize + labelMarginTop
 
-        val labelTopText = labelStart
-        val labelBottomText = labelEnd
+        val labelTopText = start
+        val labelBottomText = end
         if (labelTopText != null) canvas?.drawText(labelTopText!!, graphMargin, labelBottom, labelBottomPaint)
         if (labelBottomText != null) canvas?.drawText(labelBottomText!!, mWIDTH - graphMargin, labelBottom, labelTopPaint)
 
@@ -205,8 +205,8 @@ class BulletEmptyCircle2 @JvmOverloads constructor(
         if (value3 != null) {
             val valueInt = value3!!.toDoubleOrNull()?.toInt()
 
-            val startValue = labelStart!!.toDouble().toInt()
-            val endValue = labelEnd!!.toDouble().toInt()
+            val startValue = start!!.toDouble().toInt()
+            val endValue = end!!.toDouble().toInt()
             val rangeValue = endValue - startValue
 
             if (valueInt != null) {
