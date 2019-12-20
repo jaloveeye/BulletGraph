@@ -1,20 +1,19 @@
 package com.herace.bulletgraph
 
+import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.RectF
 import android.graphics.Typeface
 import android.util.AttributeSet
-import android.content.Context
-import androidx.core.text.isDigitsOnly
 
 /**
  * @author Herace(jaloveeye@gmail.com)
- * Class: BulletEmptyCircle
- * Created by Herace on 2019/12/19.
+ * Class: BulletEmptyCircle2
+ * Created by Herace on 2019/12/20.
  * Description:
  */
-class BulletEmptyCircle @JvmOverloads constructor(
+class BulletEmptyCircle2 @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0) : BulletGraph(context, attrs, defStyleAttr)
@@ -24,7 +23,7 @@ class BulletEmptyCircle @JvmOverloads constructor(
 
     private var graphRect: RectF = RectF(0F, 0F, 0F, 0F)
 
-    var value2: String? = ""
+    var value3: String? = ""
         set(value) {
             if (value != null) {
                 field = value
@@ -41,19 +40,41 @@ class BulletEmptyCircle @JvmOverloads constructor(
             }
         }
 
+    var labelStart: String? = ""
+        set(value) {
+            if (value != null) {
+                field = value
+                invalidate()
+            }
+        }
+
+    var labelEnd: String? = ""
+        set(value) {
+            if (value != null) {
+                field = value
+                invalidate()
+            }
+        }
+
 
     val labelTopPaint: Paint
     val labelBottomPaint: Paint
 
     init {
-        val attributeSet = context.theme.obtainStyledAttributes(attrs, R.styleable.BulletEmptyCircle, 0, 0)
+        val attributeSet = context.theme.obtainStyledAttributes(attrs, R.styleable.BulletEmptyCircle2, 0, 0)
 
         try {
             title = attributeSet.getString(R.styleable.BulletGraph_title)
             if (title.isNullOrBlank()) title = null
 
-            value2 = attributeSet.getString(R.styleable.BulletEmptyCircle_value2)
-            if (value2.isNullOrBlank()) value2 = ""
+            value3 = attributeSet.getString(R.styleable.BulletEmptyCircle2_value3)
+            if (value3.isNullOrBlank()) value3 = ""
+
+            labelStart = attributeSet.getString(R.styleable.BulletEmptyCircle2_start)
+            if (labelStart.isNullOrBlank()) labelStart = ""
+
+            labelEnd = attributeSet.getString(R.styleable.BulletEmptyCircle2_end)
+            if (labelEnd.isNullOrBlank()) labelEnd = ""
 
 
             comment = attributeSet.getString(R.styleable.BulletEmptyCircle_comment)
@@ -91,6 +112,7 @@ class BulletEmptyCircle @JvmOverloads constructor(
                     typeface = Typeface.DEFAULT
                 }
 
+
         } finally {
             attributeSet.recycle()
         }
@@ -117,9 +139,7 @@ class BulletEmptyCircle @JvmOverloads constructor(
         /**
          * Set Top & Bottom to Graph
          */
-        var graphTop: Float
-        if (comment != null) graphTop = 0.65f
-        else graphTop = 0.5f
+        var graphTop = 0.3f
         val top = mHEIGHT.toFloat() * graphTop
         val bottom = top + resources.getDimension(R.dimen.graph_height)
 
@@ -139,46 +159,61 @@ class BulletEmptyCircle @JvmOverloads constructor(
         /**
          * Draw Title Text
          */
-        var titleColor = getResourceIdToColor(R.color.colorTextBlack)
-        if (warning!!.toBoolean()) titleColor = getResourceIdToColor(R.color.colorWarning)
-        titlePaint =
-            Paint().apply {
-                isAntiAlias = true
-                color = titleColor
-                style = Paint.Style.FILL
-                textSize = titleSize
-                textAlign = Paint.Align.LEFT
-                typeface = Typeface.DEFAULT_BOLD
-            }
-        val titleMarginTop = resources.getDimension(R.dimen.title_margin_top)
-        if (title != null) canvas?.drawText(title!!, graphMargin, titleSize + titleMarginTop, titlePaint)
+//        var titleColor = getResourceIdToColor(R.color.colorTextBlack)
+//        if (warning!!.toBoolean()) titleColor = getResourceIdToColor(R.color.colorWarning)
+//        titlePaint =
+//            Paint().apply {
+//                isAntiAlias = true
+//                color = titleColor
+//                style = Paint.Style.FILL
+//                textSize = titleSize
+//                textAlign = Paint.Align.LEFT
+//                typeface = Typeface.DEFAULT_BOLD
+//            }
+//        val titleMarginTop = resources.getDimension(R.dimen.title_margin_top)
+//        if (title != null) canvas?.drawText(title!!, graphMargin, titleSize + titleMarginTop, titlePaint)
 
-        val commentPaint: Paint
-        commentPaint =
-            Paint().apply {
-                isAntiAlias = true
-                color = titleColor
-                style = Paint.Style.FILL
-                textSize = titleSize
-                textAlign = Paint.Align.LEFT
-                typeface = Typeface.DEFAULT
-            }
+        /**
+         * Draw axis label
+         */
+        val labelMarginTop = resources.getDimension(R.dimen.label_margin_top)
+        val labelBottom = bottom + labelSize + labelMarginTop
 
-        if (comment != null) canvas?.drawText(comment!!, graphMargin, (titleSize  + titleMarginTop) * 2, commentPaint)
+        val labelTopText = labelStart
+        val labelBottomText = labelEnd
+        if (labelTopText != null) canvas?.drawText(labelTopText!!, graphMargin, labelBottom, labelBottomPaint)
+        if (labelBottomText != null) canvas?.drawText(labelBottomText!!, mWIDTH - graphMargin, labelBottom, labelTopPaint)
+
+//        val commentPaint: Paint
+//        commentPaint =
+//            Paint().apply {
+//                isAntiAlias = true
+//                color = titleColor
+//                style = Paint.Style.FILL
+//                textSize = titleSize
+//                textAlign = Paint.Align.LEFT
+//                typeface = Typeface.DEFAULT
+//            }
+//
+//        if (comment != null) canvas?.drawText(comment!!, graphMargin, (titleSize  + titleMarginTop) * 2, commentPaint)
 
         /**
          * Draw axis label
          */
         val labelTop = top - labelSize
 
-        if (value2 != null) {
-            val valueInt = value2!!.toDoubleOrNull()?.toInt()
+        if (value3 != null) {
+            val valueInt = value3!!.toDoubleOrNull()?.toInt()
+
+            val startValue = labelStart!!.toDouble().toInt()
+            val endValue = labelEnd!!.toDouble().toInt()
+            val rangeValue = endValue - startValue
 
             if (valueInt != null) {
-                graphRect.set(0f + graphMargin, top, (graphWidth.toFloat()) * valueInt / 100 + graphMargin, bottom)
+                graphRect.set(0f + graphMargin, top, (graphWidth.toFloat()) * valueInt / rangeValue + graphMargin, bottom)
                 canvas?.drawRoundRect(graphRect, cornerRadius, cornerRadius, paint)
-                val labelValueText = "${value2}%"
-                val labelValueX = graphMargin + graphWidth.toFloat() * valueInt / 100 - getTextWidth(labelPaint,labelValueText, boundRect) / 2
+                val labelValueText = "${value3}"
+                val labelValueX = graphMargin + graphWidth.toFloat() * valueInt / rangeValue - getTextWidth(labelPaint,labelValueText, boundRect) / 2
                 canvas?.drawText(labelValueText, labelValueX, labelTop, labelBottomPaint)
                 val temp =  getTextWidth(labelPaint,labelValueText, boundRect) / 2
                 drawCircle(canvas, labelValueX + temp, top, bottom, R.color.colorWarning)

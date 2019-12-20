@@ -22,4 +22,9 @@
         <attr name="value2" format="string" />
         <attr name="comment" format="string" />
     </declare-styleable>
+    <declare-styleable name="BulletEmptyCircle2">
+        <attr name="value3" format="string" />
+        <attr name="start" format="string" />
+        <attr name="end" format="string" />
+    </declare-styleable>
 </resources>
