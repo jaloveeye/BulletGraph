@@ -6,6 +6,7 @@ import android.graphics.RectF
 import android.graphics.Typeface
 import android.util.AttributeSet
 import android.content.Context
+import androidx.core.text.isDigitsOnly
 
 /**
  * @author Herace(jaloveeye@gmail.com)
@@ -172,15 +173,17 @@ class BulletEmptyCircle @JvmOverloads constructor(
         val labelTop = top - labelSize
 
         if (value2 != null) {
-            val valueInt = value2!!.toDouble().toInt()
-            graphRect.set(0f + graphMargin, top, (graphWidth.toFloat()) * valueInt / 100 + graphMargin, bottom)
-            canvas?.drawRoundRect(graphRect, cornerRadius, cornerRadius, paint)
-            val labelValueText = "${value2}%"
-            val labelValueX = graphMargin + graphWidth.toFloat() * valueInt / 100 - getTextWidth(labelPaint,labelValueText, boundRect) / 2
-            canvas?.drawText(labelValueText, labelValueX, labelTop, labelBottomPaint)
+            val valueInt = value2!!.toDoubleOrNull()?.toInt()
 
-            val temp =  getTextWidth(labelPaint,labelValueText, boundRect) / 2
-            drawCircle(canvas, labelValueX + temp, top, bottom, R.color.colorWarning)
+            if (valueInt != null) {
+                graphRect.set(0f + graphMargin, top, (graphWidth.toFloat()) * valueInt / 100 + graphMargin, bottom)
+                canvas?.drawRoundRect(graphRect, cornerRadius, cornerRadius, paint)
+                val labelValueText = "${value2}%"
+                val labelValueX = graphMargin + graphWidth.toFloat() * valueInt / 100 - getTextWidth(labelPaint,labelValueText, boundRect) / 2
+                canvas?.drawText(labelValueText, labelValueX, labelTop, labelBottomPaint)
+                val temp =  getTextWidth(labelPaint,labelValueText, boundRect) / 2
+                drawCircle(canvas, labelValueX + temp, top, bottom, R.color.colorWarning)
+            }
         }
     }
 
