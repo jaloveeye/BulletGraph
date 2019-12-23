@@ -21,6 +21,8 @@ open class BulletGraph @JvmOverloads constructor(
     defStyleAttr: Int = 0)
     : View(context, attrs, defStyleAttr)
 {
+    var colors: MutableList<String> = mutableListOf()
+
     var paints: MutableList<Paint> = mutableListOf()
     var paintWhite = Paint()
     var paintGray = Paint()
@@ -145,6 +147,7 @@ open class BulletGraph @JvmOverloads constructor(
 
                     Log.d("BulletGraph Test", colorArray?.get(i).toString())
 
+                    colors.add(colorArray?.get(i).toString())
                     paint.color = Color.parseColor(colorArray?.get(i).toString())
                     paints.add(paint)
                 }
@@ -154,6 +157,9 @@ open class BulletGraph @JvmOverloads constructor(
             var titleColor = getResourceIdToColor(R.color.colorTextBlack)
             if (warning!!.toBoolean()) titleColor = getResourceIdToColor(R.color.colorWarning)
 
+            val titleTypeface = Typeface.createFromAsset(getContext().assets, "font/notosanscjkkrbold.otf")
+            val labelTypeface = Typeface.createFromAsset(getContext().assets, "font/notosanscjkkrlight.otf")
+
             titlePaint =
                 Paint().apply {
                     isAntiAlias = true
@@ -161,7 +167,7 @@ open class BulletGraph @JvmOverloads constructor(
                     style = Paint.Style.FILL
                     textSize = titleSize
                     textAlign = Paint.Align.LEFT
-                    typeface = Typeface.DEFAULT_BOLD
+                    typeface = titleTypeface
                 }
 
             labelPaint =
@@ -171,7 +177,7 @@ open class BulletGraph @JvmOverloads constructor(
                     style = Paint.Style.FILL
                     textSize = labelSize
                     textAlign = Paint.Align.LEFT
-                    typeface = Typeface.DEFAULT
+                    typeface = labelTypeface
                 }
 
             bgPaint.color = Color.parseColor(bgColor)

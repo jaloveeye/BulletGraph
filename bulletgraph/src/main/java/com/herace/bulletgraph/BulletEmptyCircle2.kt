@@ -94,6 +94,10 @@ class BulletEmptyCircle2 @JvmOverloads constructor(
             paints.add(paintCyan)
             paints.add(paintLightRed)
 
+
+//            val customTypeface = resources.getFont(R.font.notosanscjkkrbold)
+            val customTypeface = Typeface.createFromAsset(getContext().assets, "font/notosanscjkkrbold.otf")
+
             labelTopPaint =
                 Paint().apply {
                     isAntiAlias = true
@@ -101,7 +105,7 @@ class BulletEmptyCircle2 @JvmOverloads constructor(
                     style = Paint.Style.FILL
                     textSize = labelSize
                     textAlign = Paint.Align.RIGHT
-                    typeface = Typeface.DEFAULT
+                    typeface = customTypeface
                 }
 
             labelBottomPaint =

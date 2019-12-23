@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<font-family xmlns:android="http://schemas.android.com/apk/res/android">
+    <font
+        android:font="@font/notosanscjkkrblack"
+        />
+    <font
+        android:font="@font/notosanscjkkrbold"
+        />
+    <font
+        android:font="@font/notosanscjkkrdemilight"
+        />
+    <font
+        android:font="@font/notosanscjkkrlight"
+        />
+    <font
+        android:font="@font/notosanscjkkrmedium"
+        />
+    <font
+        android:font="@font/notosanscjkkrregular"
+        />
+    <font
+        android:font="@font/notosanscjkkrthin"
+        />
+    <font
+        android:font="@font/notosansmonocjkkrbold"
+        />
+    <font
+        android:font="@font/notosansmonocjkkrregular"
+        />
+</font-family>

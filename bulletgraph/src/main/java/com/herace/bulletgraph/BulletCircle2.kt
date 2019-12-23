@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
 import android.util.Log
+import androidx.core.graphics.toColor
 import java.lang.Exception
 
 /**
@@ -61,7 +62,7 @@ class BulletCircle2 @JvmOverloads constructor(
             paints.add(paintCyan)
             paints.add(paintLightRed)
 
-
+            val labelTypeface = Typeface.createFromAsset(getContext().assets, "font/notosanscjkkrlight.otf")
             labelStartPaint =
                 Paint().apply {
                     isAntiAlias = true
@@ -69,7 +70,7 @@ class BulletCircle2 @JvmOverloads constructor(
                     style = Paint.Style.FILL
                     textSize = resources.getDimension(R.dimen.label_text_size)
                     textAlign = Paint.Align.LEFT
-                    typeface = Typeface.DEFAULT
+                    typeface = labelTypeface
                 }
 
             labelEndPaint =
@@ -79,7 +80,7 @@ class BulletCircle2 @JvmOverloads constructor(
                     style = Paint.Style.FILL
                     textSize = resources.getDimension(R.dimen.label_text_size)
                     textAlign = Paint.Align.RIGHT
-                    typeface = Typeface.DEFAULT
+                    typeface = labelTypeface
                 }
         } finally {
             attributeSet.recycle()
@@ -142,37 +143,7 @@ class BulletCircle2 @JvmOverloads constructor(
             }
 
 
-            /**
-             * Draw Title Text
-             */
-            var titleColor = getResourceIdToColor(R.color.colorTextBlack)
-            if (warning!!.toBoolean()) titleColor = getResourceIdToColor(R.color.colorWarning)
-            titlePaint =
-                Paint().apply {
-                    isAntiAlias = true
-                    color = titleColor
-                    style = Paint.Style.FILL
-                    textSize = titleSize
-                    textAlign = Paint.Align.LEFT
-                    typeface = Typeface.DEFAULT_BOLD
-                }
-            subTitlePaint =
-                Paint().apply {
-                    isAntiAlias = true
-                    color = titleColor
-                    style = Paint.Style.FILL
-                    textSize = resources.getDimension(R.dimen.title_text_size)
-                    textAlign = Paint.Align.LEFT
-                    typeface = Typeface.DEFAULT
-                }
-            val titleMarginTop = resources.getDimension(R.dimen.title_margin_top)
-            canvas?.drawText(title!!, graphMargin, titleSize + titleMarginTop, titlePaint)
-            canvas?.drawText(
-                subTitle!!,
-                graphMargin,
-                titleSize + subTitleSize + titleMarginTop * 2,
-                subTitlePaint
-            )
+
 
 
             /**
@@ -263,6 +234,44 @@ class BulletCircle2 @JvmOverloads constructor(
                 }
             }
 
+            /**
+             * Draw Title Text
+             */
+//            var titleColor = getResourceIdToColor(R.color.colorTextBlack)
+//            if (warning!!.toBoolean()) titleColor = getResourceIdToColor(R.color.colorWarning)
+            val titleTypeface = Typeface.createFromAsset(getContext().assets, "font/notosanscjkkrbold.otf")
+            val subTitleTypeface = Typeface.createFromAsset(getContext().assets, "font/notosanscjkkrmedium.otf")
+            var titleColor = colors[target]
+            titlePaint =
+                Paint().apply {
+                    isAntiAlias = true
+                    color = Color.parseColor(titleColor)
+                    style = Paint.Style.FILL
+                    textSize = titleSize
+                    textAlign = Paint.Align.LEFT
+                    typeface = titleTypeface
+                }
+
+            subTitlePaint =
+                Paint().apply {
+                    isAntiAlias = true
+                    color = Color.parseColor(titleColor)
+                    style = Paint.Style.FILL
+                    textSize = resources.getDimension(R.dimen.title_text_size)
+                    textAlign = Paint.Align.LEFT
+                    typeface = subTitleTypeface
+                }
+
+
+            val titleMarginTop = resources.getDimension(R.dimen.title_margin_top)
+            canvas?.drawText(title!!, graphMargin, titleSize + titleMarginTop, titlePaint)
+            canvas?.drawText(
+                subTitle!!,
+                graphMargin,
+                titleSize + subTitleSize + titleMarginTop * 2,
+                subTitlePaint
+            )
+
             val markerX = ratio * ratioValue
             drawCircle(
                 canvas,
@@ -274,6 +283,7 @@ class BulletCircle2 @JvmOverloads constructor(
                 graphMargin.toInt(),
                 markerColor
             )
+
 //        if (warning!!.toBoolean()) drawCircle(canvas, markerX, target, ratio, top, bottom, graphMargin.toInt(), R.color.colorWarning)
 //        else drawCircle(canvas, markerX, target, ratio, top, bottom, graphMargin.toInt(), R.color.colorNormal)
         } catch (e: Exception) {

@@ -52,6 +52,7 @@ class BulletTopBottom @JvmOverloads constructor(
             paints.add(paintCyan)
             paints.add(paintLightRed)
 
+            val labelTypeface = Typeface.createFromAsset(getContext().assets, "font/notosanscjkkrlight.otf")
             labelTopPaint =
                 Paint().apply {
                     isAntiAlias = true
@@ -59,7 +60,7 @@ class BulletTopBottom @JvmOverloads constructor(
                     style = Paint.Style.FILL
                     textSize = labelSize
                     textAlign = Paint.Align.RIGHT
-                    typeface = Typeface.DEFAULT
+                    typeface = labelTypeface
                 }
 
             labelBottomPaint =
@@ -69,7 +70,7 @@ class BulletTopBottom @JvmOverloads constructor(
                     style = Paint.Style.FILL
                     textSize = labelSize
                     textAlign = Paint.Align.LEFT
-                    typeface = Typeface.DEFAULT
+                    typeface = labelTypeface
                 }
         } finally {
             attributeSet.recycle()
@@ -132,8 +133,9 @@ class BulletTopBottom @JvmOverloads constructor(
             /**
              * Draw Title Text
              */
-            var titleColor = getResourceIdToColor(R.color.colorTextBlack)
+            var titleColor = getResourceIdToColor(R.color.colorNormal)
             if (warning!!.toBoolean()) titleColor = getResourceIdToColor(R.color.colorWarning)
+            val titleTypeface = Typeface.createFromAsset(getContext().assets, "font/notosanscjkkrbold.otf")
             titlePaint =
                 Paint().apply {
                     isAntiAlias = true
@@ -141,7 +143,7 @@ class BulletTopBottom @JvmOverloads constructor(
                     style = Paint.Style.FILL
                     textSize = titleSize
                     textAlign = Paint.Align.LEFT
-                    typeface = Typeface.DEFAULT_BOLD
+                    typeface = titleTypeface
                 }
             val titleMarginTop = resources.getDimension(R.dimen.title_margin_top)
             canvas?.drawText(title!!, graphMargin, titleSize + titleMarginTop, titlePaint)
