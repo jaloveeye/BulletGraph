@@ -81,6 +81,12 @@ open class BulletGraph @JvmOverloads constructor(
 
     var bgColor: String? = null
     var labelA: Array<CharSequence>? = null
+        set(value) {
+            if (value != null) {
+                field = value
+                invalidate()
+            }
+        }
     var labelB: Array<CharSequence>? = null
     var range: Array<CharSequence>? = null
     var colorArray : Array<CharSequence>? = null
