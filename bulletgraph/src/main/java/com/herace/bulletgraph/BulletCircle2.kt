@@ -95,7 +95,15 @@ class BulletCircle2 @JvmOverloads constructor(
              * Set min width & min height
              */
 
-            if (text_color_Array?.size > 1) {
+            if (text_color != null) {
+
+                label_1_textArray = label_1_text?.split("|")!!.toMutableList()
+                label_2_textArray = label_2_text?.split("|")!!.toMutableList()
+                text_color_Array = text_color?.split("|")!!.toMutableList()
+                graph_color_Array = graph_color?.split("|")!!.toMutableList()
+                graph_range_Array = graph_range?.split("|")!!.toMutableList()
+
+
                 var mWIDTH = width
                 var mHEIGHT = height
                 if (width < minWidth) mWIDTH = minWidth
@@ -128,7 +136,7 @@ class BulletCircle2 @JvmOverloads constructor(
                  */
                 val cornerRadius = 0F
 
-                paints[0].color = Color.parseColor(text_color_Array[0])
+                paints[0].color = Color.parseColor(graph_color_Array[0])
                 graphRect.set(graphMargin, top, ratio + graphMargin + cornerRadius, bottom)
                 canvas?.drawRoundRect(
                     graphRect,
@@ -144,7 +152,7 @@ class BulletCircle2 @JvmOverloads constructor(
                     bottom
                 )
 
-                paints[number - 1].color = Color.parseColor(text_color_Array[number - 1])
+                paints[number - 1].color = Color.parseColor(graph_color_Array[number - 1])
                 canvas?.drawRoundRect(
                     graphRect,
                     cornerRadius,
@@ -160,7 +168,7 @@ class BulletCircle2 @JvmOverloads constructor(
                         bottom
                     )
 
-                    paints[i].color = Color.parseColor(text_color_Array[i])
+                    paints[i].color = Color.parseColor(graph_color_Array[i])
                     canvas?.drawRoundRect(
                         graphRect,
                         cornerRadius,
@@ -248,7 +256,7 @@ class BulletCircle2 @JvmOverloads constructor(
                     Typeface.createFromAsset(getContext().assets, "font/notosanscjkkrbold.otf")
                 val subTitleTypeface =
                     Typeface.createFromAsset(getContext().assets, "font/notosanscjkkrmedium.otf")
-                var titleColor = colors[target]
+                var titleColor = text_color_Array[target]
                 titlePaint =
                     Paint().apply {
                         isAntiAlias = true

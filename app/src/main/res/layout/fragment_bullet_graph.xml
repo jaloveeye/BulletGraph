@@ -114,7 +114,7 @@
                 app:title="이완기 혈압"
                 app:subTitle="70mmHg으로 정상범위로 안전합니다."
                 app:warning="false"
-                app:value="20"
+                app:value="5"
                 app:isASC="true"
                 app:label_1="@array/melancholia_label"
                 app:label_2="@array/melancholia_sub_label"
@@ -122,7 +122,8 @@
                 app:range="@array/melancholia_range"
                 app:label_1_text="정상|주의|경고|위험"
                 app:label_2_text="4|9|19|27"
-                app:text_color="#FF0000|#FFFF00|#00FF00|#0000FF"
+                app:graph_color="#D9D8D6|#62CBC9|#FF647D|#665CC7"
+                app:text_color="#595757|#00A5B5|#FF647D|#665CC7"
                 app:graph_range="0|5|10|20|28"
                 />
 

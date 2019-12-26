@@ -72,6 +72,13 @@ open class BulletGraph @JvmOverloads constructor(
         }
     var text_color_Array: MutableList<String> = mutableListOf()
 
+    var graph_color: String? = ""
+        set(value) {
+            field = value
+            invalidate()
+        }
+    var graph_color_Array: MutableList<String> = mutableListOf()
+
     var graph_range: String? = ""
         set(value) {
             field = value
@@ -158,6 +165,10 @@ open class BulletGraph @JvmOverloads constructor(
             text_color = attributeSet.getString(R.styleable.BulletGraph_text_color)
             if (text_color.isNullOrBlank()) text_color = ""
             text_color_Array = text_color?.split("|")!!.toMutableList()
+
+            graph_color = attributeSet.getString(R.styleable.BulletGraph_graph_color)
+            if (graph_color.isNullOrBlank()) graph_color = ""
+            graph_color_Array = graph_color?.split("|")!!.toMutableList()
 
             graph_range = attributeSet.getString(R.styleable.BulletGraph_graph_range)
             if (graph_range.isNullOrBlank()) graph_range = ""
