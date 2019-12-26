@@ -7,6 +7,10 @@
         <attr name="title" format="string" />
         <attr name="value" format="integer" />
         <attr name="isASC" format="boolean" />
+        <attr name="label_1_text" format="string" />
+        <attr name="label_2_text" format="string" />
+        <attr name="text_color" format="string" />
+        <attr name="graph_range" format="string" />
         <attr name="label_1" />
         <attr name="label_2" />
         <attr name="range" />

@@ -143,54 +143,30 @@ class BulletCircle2 @JvmOverloads constructor(
             }
 
 
-
-
-
             /**
              * Draw axis label
              */
             val labelMarginTop = resources.getDimension(R.dimen.label_margin_top)
             val LabelABottom = bottom + labelSize + labelMarginTop
 
-            canvas?.drawText(labelA?.get(0).toString(), graphMargin, LabelABottom, labelStartPaint)
-            canvas?.drawText(
-                labelB?.get(0).toString(),
-                graphMargin,
-                top - labelSize,
-                labelStartPaint
-            )
 
-            canvas?.drawText(
-                labelA?.get(number).toString(),
-                (number - 1) * ratio + graphMargin + (ratio - getTextWidth(
-                    labelPaint,
-                    labelA?.get(number).toString(),
-                    boundRect
-                )) / 2,
-                LabelABottom,
-                labelPaint
-            )
-            canvas?.drawText(
-                labelB?.get(number).toString(),
-                number * ratio + graphMargin,
-                top - labelSize,
-                labelEndPaint
-            )
-
-            for (i in 1 until number) {
+            for (i in 0 until number) {
                 canvas?.drawText(
-                    labelA?.get(i).toString(),
-                    (i - 1) * ratio + graphMargin + (ratio - getTextWidth(
+                    label_1_textArray.get(i).toString(),
+                    (i) * ratio + graphMargin + (ratio - getTextWidth(
                         labelPaint,
-                        labelA?.get(i).toString(),
+                        label_1_textArray.get(i).toString(),
                         boundRect
                     )) / 2,
                     LabelABottom,
                     labelPaint
                 )
+            }
+
+            for (i in 0 until number - 1) {
                 canvas?.drawText(
-                    labelB?.get(i).toString(),
-                    i * ratio + graphMargin - getTextWidth(
+                    label_2_textArray.get(i).toString(),
+                    (i + 1) * ratio + graphMargin - getTextWidth(
                         labelPaint,
                         labelB?.get(i).toString(),
                         boundRect
@@ -206,33 +182,35 @@ class BulletCircle2 @JvmOverloads constructor(
             var target = 0
             var ratioValue = 0f
             var markerColor = R.color.colorNormal
-            for (i in 0 until range?.size?.minus(1)!!) {
+
+            for (i in 0 until graph_range_Array.size.minus(1)) {
                 if (isASC) {
-                    if (value >= Integer.parseInt(range?.get(i).toString()) && value <= Integer.parseInt(
-                            range?.get(i + 1).toString()
+                    if (value >= Integer.parseInt(graph_range_Array.get(i)) && value < Integer.parseInt(
+                            graph_range_Array.get(i + 1)
                         )
                     ) {
                         target = i
-                        val startVal = Integer.parseInt(range?.get(i + 1).toString()).toFloat()
-                        val endVal = Integer.parseInt(range?.get(i).toString()).toFloat()
+                        val startVal = Integer.parseInt(graph_range_Array.get(i + 1)).toFloat()
+                        val endVal = Integer.parseInt(graph_range_Array.get(i)).toFloat()
                         ratioValue = (value.toFloat() - endVal) / (startVal - endVal)
                         markerColor = paints[i].color
                         break
                     }
                 } else {
-                    if (value <= Integer.parseInt(range?.get(i).toString()) && value >= Integer.parseInt(
-                            range?.get(i + 1).toString()
+                    if (value <= Integer.parseInt(graph_range_Array.get(i)) && value > Integer.parseInt(
+                            graph_range_Array.get(i + 1)
                         )
                     ) {
                         target = i
-                        val startVal = Integer.parseInt(range?.get(i).toString()).toFloat()
-                        val endVal = Integer.parseInt(range?.get(i + 1).toString()).toFloat()
+                        val startVal = Integer.parseInt(graph_range_Array.get(i)).toFloat()
+                        val endVal = Integer.parseInt(graph_range_Array.get(i + 1)).toFloat()
                         ratioValue = 1F - (value.toFloat() - endVal) / (startVal - endVal)
                         markerColor = paints[i].color
                         break
                     }
                 }
             }
+
 
             /**
              * Draw Title Text

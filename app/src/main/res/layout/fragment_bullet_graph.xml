@@ -91,6 +91,7 @@
                 app:label_2="@array/melancholia_sub_label"
                 app:colorArray="@array/melancholia_color"
                 app:range="@array/melancholia_range"
+                app:text_color="#FF0000|#FFFF00|#00FF00|#0000FF"
                 />
 
             <TextView
@@ -119,6 +120,10 @@
                 app:label_2="@array/melancholia_sub_label"
                 app:colorArray="@array/melancholia_color"
                 app:range="@array/melancholia_range"
+                app:label_1_text="정상|주의|경고|위험"
+                app:label_2_text="4|9|19|27"
+                app:text_color="#FF0000|#FFFF00|#00FF00|#0000FF"
+                app:graph_range="0|5|10|20|28"
                 />
 
             <TextView

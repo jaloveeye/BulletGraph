@@ -50,6 +50,35 @@ open class BulletGraph @JvmOverloads constructor(
             field = value
             invalidate()
         }
+
+    var label_1_text: String? = ""
+        set(value) {
+            field = value
+            invalidate()
+        }
+    var label_1_textArray: MutableList<String> = mutableListOf()
+
+    var label_2_text: String? = ""
+        set(value) {
+            field = value
+            invalidate()
+        }
+    var label_2_textArray: MutableList<String> = mutableListOf()
+
+    var text_color: String? = ""
+        set(value) {
+            field = value
+            invalidate()
+        }
+    var text_color_Array: MutableList<String> = mutableListOf()
+
+    var graph_range: String? = ""
+        set(value) {
+            field = value
+            invalidate()
+        }
+    var graph_range_Array: MutableList<String> = mutableListOf()
+
     var value = 0
         set(value) {
             if (value != null) {
@@ -118,6 +147,23 @@ open class BulletGraph @JvmOverloads constructor(
             title = attributeSet.getString(R.styleable.BulletGraph_title)
             if (title.isNullOrBlank()) title = ""
 
+            label_1_text = attributeSet.getString(R.styleable.BulletGraph_label_1_text)
+            if (label_1_text.isNullOrBlank()) label_1_text = ""
+            label_1_textArray = label_1_text?.split("|")!!.toMutableList()
+
+            label_2_text = attributeSet.getString(R.styleable.BulletGraph_label_2_text)
+            if (label_2_text.isNullOrBlank()) label_2_text = ""
+            label_2_textArray = label_2_text?.split("|")!!.toMutableList()
+
+            text_color = attributeSet.getString(R.styleable.BulletGraph_text_color)
+            if (text_color.isNullOrBlank()) text_color = ""
+            text_color_Array = text_color?.split("|")!!.toMutableList()
+
+            graph_range = attributeSet.getString(R.styleable.BulletGraph_graph_range)
+            if (graph_range.isNullOrBlank()) graph_range = ""
+            graph_range_Array = graph_range?.split("|")!!.toMutableList()
+
+
             value = attributeSet.getInt(R.styleable.BulletGraph_value, value)
             isASC = attributeSet.getBoolean(R.styleable.BulletGraph_isASC, isASC)
 
@@ -151,10 +197,10 @@ open class BulletGraph @JvmOverloads constructor(
                 for (i in 0 until numberOfFields) {
                     val paint = Paint()
 
-                    Log.d("BulletGraph Test", colorArray?.get(i).toString())
+                    Log.d("BulletGraph Test", text_color_Array?.get(i).toString())
 
-                    colors.add(colorArray?.get(i).toString())
-                    paint.color = Color.parseColor(colorArray?.get(i).toString())
+                    colors.add(text_color_Array?.get(i).toString())
+                    paint.color = Color.parseColor(text_color_Array?.get(i).toString())
                     paints.add(paint)
                 }
             }
