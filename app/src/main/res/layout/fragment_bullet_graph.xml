@@ -33,10 +33,11 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/title_1"
                 app:bgColor="#FFFFFF"
-                app:title="수축기 혈압:하위30%"
-                app:warning="@{fragment.getTestString()}"
+                app:title="수축기 혈압:상위30%"
                 app:value="30"
-                app:topbottom="@{fragment.getTestString()}"
+                app:topbottom="true"
+                app:bt_text_color="#595757"
+                app:bt_graph_color="#62CBC9"
                 />
 
             <TextView

@@ -17,9 +17,6 @@ class BulletCircle @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0) : BulletGraph(context, attrs, defStyleAttr)
 {
-//    private var paintCyan = Paint()
-//    private var paintLightRed = Paint()
-
     var subTitle: String? = ""
         set(value) {
             if (value != null) {
@@ -27,12 +24,6 @@ class BulletCircle @JvmOverloads constructor(
                 invalidate()
             }
         }
-
-    /**
-     * make image to marker
-     */
-//    private val markerRed = BitmapFactory.decodeResource(context.resources, R.drawable.marker_circle_red)
-//    private val markerBlue = BitmapFactory.decodeResource(context.resources, R.drawable.marker_circle_cyan)
 
     private var graphRect: RectF = RectF(0F, 0F, 0F, 0F)
 
@@ -78,7 +69,6 @@ class BulletCircle @JvmOverloads constructor(
         super.onDraw(canvas)
 
         try {
-
             if (text_color != null) {
 
                 label_1_textArray = label_1_text?.split("|")!!.toMutableList()
@@ -158,13 +148,13 @@ class BulletCircle @JvmOverloads constructor(
 
 
                 canvas?.drawText(
-                    label_1_textArray?.get(number - 1).toString(),
+                    label_1_textArray.get(number - 1).toString(),
                     number * ratio + graphMargin,
                     LabelABottom,
                     labelEndPaint
                 )
                 canvas?.drawText(
-                    label_2_textArray?.get(number - 1).toString(),
+                    label_2_textArray.get(number - 1).toString(),
                     number * ratio + graphMargin,
                     LabelBBottom,
                     labelEndPaint
@@ -172,20 +162,20 @@ class BulletCircle @JvmOverloads constructor(
 
                 for (i in 0 until number.minus(1)) {
                     canvas?.drawText(
-                        label_1_textArray?.get(i).toString(),
+                        label_1_textArray.get(i).toString(),
                         (i + 1) * ratio + graphMargin - getTextWidth(
                             labelPaint,
-                            label_1_textArray?.get(i).toString(),
+                            label_1_textArray.get(i).toString(),
                             boundRect
                         ) / 2,
                         LabelABottom,
                         labelPaint
                     )
                     canvas?.drawText(
-                        label_2_textArray?.get(i).toString(),
+                        label_2_textArray.get(i).toString(),
                         (i + 1) * ratio + graphMargin - getTextWidth(
                             labelPaint,
-                            label_2_textArray?.get(i).toString(),
+                            label_2_textArray.get(i).toString(),
                             boundRect
                         ) / 2,
                         LabelBBottom,
@@ -298,7 +288,6 @@ class BulletCircle @JvmOverloads constructor(
             canvas?.drawCircle(x, y, radius, paint1)
 
             val paint2 = Paint()
-//        paint2.color = getResourceIdToColor(color)
             paint2.color = color
             paint2.strokeWidth = resources.getDimension(R.dimen.graph_height)
             paint2.style = Paint.Style.STROKE

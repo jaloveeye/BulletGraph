@@ -147,6 +147,7 @@ open class BulletGraph @JvmOverloads constructor(
 
 
             bgColor = attributeSet.getString(R.styleable.BulletGraph_bgColor)
+            if (bgColor.isNullOrBlank()) bgColor = "#FFFFFF"
 
             warning = attributeSet.getString(R.styleable.BulletGraph_warning)
             if (warning.isNullOrBlank()) warning = "false"

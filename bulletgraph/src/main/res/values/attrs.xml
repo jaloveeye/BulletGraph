@@ -22,6 +22,8 @@
     </declare-styleable>
     <declare-styleable name="BulletTopBottom">
         <attr name="topbottom" format="string" />
+        <attr name="bt_text_color" format="string" />
+        <attr name="bt_graph_color" format="string" />
     </declare-styleable>
     <declare-styleable name="BulletEmptyCircle">
         <attr name="value2" format="string" />

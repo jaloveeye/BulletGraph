@@ -18,9 +18,6 @@ class BulletCircle2 @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0) : BulletGraph(context, attrs, defStyleAttr)
 {
-//    private var paintCyan = Paint()
-//    private var paintLightRed = Paint()
-
     var subTitle: String? = ""
         set(value) {
             if (value != null) {
@@ -28,12 +25,6 @@ class BulletCircle2 @JvmOverloads constructor(
                 invalidate()
             }
         }
-
-    /**
-     * make image to marker
-     */
-//    private val markerRed = BitmapFactory.decodeResource(context.resources, R.drawable.marker_circle_red)
-//    private val markerBlue = BitmapFactory.decodeResource(context.resources, R.drawable.marker_circle_cyan)
 
     private var graphRect: RectF = RectF(0F, 0F, 0F, 0F)
 
@@ -284,9 +275,6 @@ class BulletCircle2 @JvmOverloads constructor(
                     graphMargin.toInt(),
                     markerColor
                 )
-
-//        if (warning!!.toBoolean()) drawCircle(canvas, markerX, target, ratio, top, bottom, graphMargin.toInt(), R.color.colorWarning)
-//        else drawCircle(canvas, markerX, target, ratio, top, bottom, graphMargin.toInt(), R.color.colorNormal)
             }
         } catch (e: Exception) {
             Log.e("Bullet Graph", e.message)
@@ -311,7 +299,6 @@ class BulletCircle2 @JvmOverloads constructor(
             canvas?.drawCircle(x, y, radius, paint1)
 
             val paint2 = Paint()
-//        paint2.color = getResourceIdToColor(color)
             paint2.color = color
             paint2.strokeWidth = resources.getDimension(R.dimen.graph_height)
             paint2.style = Paint.Style.STROKE
