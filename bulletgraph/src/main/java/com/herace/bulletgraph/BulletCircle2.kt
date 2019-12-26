@@ -18,8 +18,8 @@ class BulletCircle2 @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0) : BulletGraph(context, attrs, defStyleAttr)
 {
-    private var paintCyan = Paint()
-    private var paintLightRed = Paint()
+//    private var paintCyan = Paint()
+//    private var paintLightRed = Paint()
 
     var subTitle: String? = ""
         set(value) {
@@ -32,8 +32,8 @@ class BulletCircle2 @JvmOverloads constructor(
     /**
      * make image to marker
      */
-    private val markerRed = BitmapFactory.decodeResource(context.resources, R.drawable.marker_circle_red)
-    private val markerBlue = BitmapFactory.decodeResource(context.resources, R.drawable.marker_circle_cyan)
+//    private val markerRed = BitmapFactory.decodeResource(context.resources, R.drawable.marker_circle_red)
+//    private val markerBlue = BitmapFactory.decodeResource(context.resources, R.drawable.marker_circle_cyan)
 
     private var graphRect: RectF = RectF(0F, 0F, 0F, 0F)
 
@@ -49,18 +49,6 @@ class BulletCircle2 @JvmOverloads constructor(
         try {
             subTitle = attributeSet.getString(R.styleable.BulletCircle_subTitle)
             if (subTitle.isNullOrBlank()) subTitle = ""
-
-            paintCyan.color = getResourceIdToColor(R.color.colorNormal)
-            paintLightRed.color = getResourceIdToColor(R.color.colorWarning)
-
-            paints.remove(paintYellow)
-            paints.remove(paintOrange)
-            paints.remove(paintDarkOragne)
-            paints.remove(paintRed)
-            paints.remove(paintDarkRed)
-
-            paints.add(paintCyan)
-            paints.add(paintLightRed)
 
             val labelTypeface = Typeface.createFromAsset(getContext().assets, "font/notosanscjkkrlight.otf")
             labelStartPaint =
@@ -250,8 +238,6 @@ class BulletCircle2 @JvmOverloads constructor(
                 /**
                  * Draw Title Text
                  */
-//            var titleColor = getResourceIdToColor(R.color.colorTextBlack)
-//            if (warning!!.toBoolean()) titleColor = getResourceIdToColor(R.color.colorWarning)
                 val titleTypeface =
                     Typeface.createFromAsset(getContext().assets, "font/notosanscjkkrbold.otf")
                 val subTitleTypeface =

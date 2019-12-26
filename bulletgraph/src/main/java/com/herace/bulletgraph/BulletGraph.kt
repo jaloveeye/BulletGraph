@@ -108,7 +108,7 @@ open class BulletGraph @JvmOverloads constructor(
             }
         }
 
-    var isASC: Boolean = false
+    var isASC: Boolean = true
         set(value) {
             field = value
             invalidate()
@@ -207,11 +207,6 @@ open class BulletGraph @JvmOverloads constructor(
             }else {
                 for (i in 0 until numberOfFields) {
                     val paint = Paint()
-//
-//                    Log.d("BulletGraph Test", text_color_Array?.get(i).toString())
-//
-//                    colors.add(text_color_Array?.get(i).toString())
-//                    paint.color = Color.parseColor(text_color_Array?.get(i).toString())
                     paints.add(paint)
                 }
             }
