@@ -82,6 +82,8 @@ class BulletCircle2 @JvmOverloads constructor(
                 graph_color_Array = graph_color?.split("|")!!.toMutableList()
                 graph_range_Array = graph_range?.split("|")!!.toMutableList()
 
+                numberOfFields = graph_color_Array.size
+
 
                 var mWIDTH = width
                 var mHEIGHT = height
@@ -237,7 +239,7 @@ class BulletCircle2 @JvmOverloads constructor(
                 titlePaint =
                     Paint().apply {
                         isAntiAlias = true
-                        color = Color.parseColor(titleColor)
+                        color = getResourceIdToColor(R.color.colorTextBlack)
                         style = Paint.Style.FILL
                         textSize = titleSize
                         textAlign = Paint.Align.LEFT

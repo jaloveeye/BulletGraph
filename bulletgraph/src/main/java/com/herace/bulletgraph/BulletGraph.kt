@@ -38,9 +38,9 @@ open class BulletGraph @JvmOverloads constructor(
     var bgPaint = Paint()
 
     var minWidth = 200
-    var minHeight = 120
+    var minHeight = 80
 
-    var numberOfFields = 6
+    var numberOfFields = 0
 
     /**
      * 변화 가능한  attrs
@@ -144,7 +144,6 @@ open class BulletGraph @JvmOverloads constructor(
 
             // TODO : attributeSet 의 null 처리
             numberOfFields = attributeSet.getInt(R.styleable.BulletGraph_noOfFields, numberOfFields)
-
 
             bgColor = attributeSet.getString(R.styleable.BulletGraph_bgColor)
             if (bgColor.isNullOrBlank()) bgColor = "#FFFFFF"

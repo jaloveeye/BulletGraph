@@ -92,7 +92,7 @@ class BulletTopBottom @JvmOverloads constructor(
             var mWIDTH = width
             var mHEIGHT = height
             if (width < minWidth) mWIDTH = minWidth
-            if (height < 100) mHEIGHT = minHeight
+//            if (height < minHeight) mHEIGHT = minHeight
 
 
             /**
@@ -104,7 +104,7 @@ class BulletTopBottom @JvmOverloads constructor(
             /**
              * Set Top & Bottom to Graph
              */
-            val top = mHEIGHT.toFloat() * 0.5f
+            val top = mHEIGHT.toFloat() * 0.45f
             val bottom = top + resources.getDimension(R.dimen.graph_height)
 
 
