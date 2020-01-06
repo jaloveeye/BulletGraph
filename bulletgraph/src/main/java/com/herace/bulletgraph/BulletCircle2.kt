@@ -184,7 +184,7 @@ class BulletCircle2 @JvmOverloads constructor(
                         label_2_textArray.get(i).toString(),
                         (i + 1) * ratio + graphMargin - getTextWidth(
                             labelPaint,
-                            labelB?.get(i).toString(),
+                            label_2_textArray.get(i).toString(),
                             boundRect
                         ) / 2,
                         top - labelSize,
