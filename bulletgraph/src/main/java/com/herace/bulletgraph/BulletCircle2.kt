@@ -266,17 +266,20 @@ class BulletCircle2 @JvmOverloads constructor(
                     subTitlePaint
                 )
 
-                val markerX = ratio * ratioValue
-                drawCircle(
-                    canvas,
-                    markerX,
-                    target,
-                    ratio,
-                    top,
-                    bottom,
-                    graphMargin.toInt(),
-                    markerColor
-                )
+
+                if (value != -1000000) {
+                    val markerX = ratio * ratioValue
+                    drawCircle(
+                        canvas,
+                        markerX,
+                        target,
+                        ratio,
+                        top,
+                        bottom,
+                        graphMargin.toInt(),
+                        markerColor
+                    )
+                }
             }
         } catch (e: Exception) {
             Log.e("Bullet Graph", e.message)

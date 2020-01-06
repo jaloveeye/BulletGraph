@@ -121,19 +121,22 @@ class BulletTopBottom @JvmOverloads constructor(
             paints[1].color = Color.parseColor(bt_graph_color)
             //val paint = if (topbottom!!.toBoolean()) paints[1] else paints[2]
 
-            if (topbottom!!.toBoolean()) graphRect.set(
-                graphWidth - (graphWidth.toFloat() * value / 100) + graphMargin,
-                top,
-                graphWidth + graphMargin,
-                bottom
-            )
-            else graphRect.set(
-                0f + graphMargin,
-                top,
-                (graphWidth.toFloat()) * value / 100 + graphMargin,
-                bottom
-            )
-            canvas?.drawRoundRect(graphRect, cornerRadius, cornerRadius, paints[1])
+
+            if (value != -1000000) {
+                if (topbottom!!.toBoolean()) graphRect.set(
+                    graphWidth - (graphWidth.toFloat() * value / 100) + graphMargin,
+                    top,
+                    graphWidth + graphMargin,
+                    bottom
+                )
+                else graphRect.set(
+                    0f + graphMargin,
+                    top,
+                    (graphWidth.toFloat()) * value / 100 + graphMargin,
+                    bottom
+                )
+                canvas?.drawRoundRect(graphRect, cornerRadius, cornerRadius, paints[1])
+            }
 
 
             /**
@@ -179,8 +182,10 @@ class BulletTopBottom @JvmOverloads constructor(
                 ) / 2
             canvas?.drawText(labelValueText, labelValueX, labelTop, labelBottomPaint)
 
-            val temp = getTextWidth(labelPaint, labelValueText, boundRect) / 2
-            drawCircle(canvas, labelValueX + temp, top, bottom,  paints[1].color)
+            if (value != -1000000) {
+                val temp = getTextWidth(labelPaint, labelValueText, boundRect) / 2
+                drawCircle(canvas, labelValueX + temp, top, bottom,  paints[1].color)
+            }
         } catch (e: Exception) {
             Log.e("Bullet Graph", e.message)
         }
