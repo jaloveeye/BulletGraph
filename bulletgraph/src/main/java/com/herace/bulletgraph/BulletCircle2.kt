@@ -87,8 +87,8 @@ class BulletCircle2 @JvmOverloads constructor(
 
                 var mWIDTH = width
                 var mHEIGHT = height
-                if (width < minWidth) mWIDTH = minWidth
-                if (height < minHeight) mHEIGHT = minHeight
+//                if (width < minWidth) mWIDTH = minWidth
+//                if (height < minHeight) mHEIGHT = minHeight
 
 
                 /**
@@ -100,7 +100,9 @@ class BulletCircle2 @JvmOverloads constructor(
                 /**
                  * Set Top & Bottom to Graph
                  */
-                val top = mHEIGHT.toFloat() * 0.65f
+//                val top = mHEIGHT.toFloat() * 0.65f
+//                val bottom = top + resources.getDimension(R.dimen.graph_height)
+                val top = mHEIGHT.toFloat() * 0.45f
                 val bottom = top + resources.getDimension(R.dimen.graph_height)
 
 
