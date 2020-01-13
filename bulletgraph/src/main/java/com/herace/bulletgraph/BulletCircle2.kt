@@ -198,18 +198,21 @@ class BulletCircle2 @JvmOverloads constructor(
                     )
                 }
 
-                for (i in 0 until number) {
-                    canvas?.drawText(
-                        label_3_textArray.get(i).toString(),
-                        (i) * ratio + graphMargin + (ratio - getTextWidth(
-                            labelPaint,
+                if (label_3_textArray.size > 1) {
+                    for (i in 0 until number) {
+                        canvas?.drawText(
                             label_3_textArray.get(i).toString(),
-                            boundRect
-                        )) / 2,
-                        LabelCBottom,
-                        labelPaint
-                    )
+                            (i) * ratio + graphMargin + (ratio - getTextWidth(
+                                labelPaint,
+                                label_3_textArray.get(i).toString(),
+                                boundRect
+                            )) / 2,
+                            LabelCBottom,
+                            labelPaint
+                        )
+                    }
                 }
+
 
                 /**
                  * Calculation to x axis coordinates to marker
