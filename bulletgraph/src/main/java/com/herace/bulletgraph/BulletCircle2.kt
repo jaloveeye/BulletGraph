@@ -105,7 +105,7 @@ class BulletCircle2 @JvmOverloads constructor(
 //                val bottom = top + resources.getDimension(R.dimen.graph_height)
 
                 var top = mHEIGHT.toFloat() * 0.45f
-                if (label_3_textArray.size > 1) top = mHEIGHT.toFloat() * 0.33f
+                if (label_3_textArray.size > 1) top = mHEIGHT.toFloat() * 0.35f
                 val bottom = top + resources.getDimension(R.dimen.graph_height)
 
 

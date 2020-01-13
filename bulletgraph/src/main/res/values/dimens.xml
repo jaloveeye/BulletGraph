@@ -8,5 +8,5 @@
     <dimen name="graph_height">4dp</dimen>
     <dimen name="circle_radius">5dp</dimen>
     <dimen name="title_margin_top">5dp</dimen>
-    <dimen name="label_margin_top">10dp</dimen>
+    <dimen name="label_margin_top">5dp</dimen>
 </resources>

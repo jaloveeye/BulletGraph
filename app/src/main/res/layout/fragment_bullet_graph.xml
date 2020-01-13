@@ -105,7 +105,7 @@
             <com.herace.bulletgraph.BulletCircle2
                 android:id="@+id/bullet_graph_4"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="55dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/title_4"
@@ -131,7 +131,7 @@
             <com.herace.bulletgraph.BulletCircle2
                 android:id="@+id/bullet_graph_8"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/title_8"
