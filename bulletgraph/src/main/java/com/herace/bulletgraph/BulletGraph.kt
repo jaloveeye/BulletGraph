@@ -65,6 +65,13 @@ open class BulletGraph @JvmOverloads constructor(
         }
     var label_2_textArray: MutableList<String> = mutableListOf()
 
+    var label_3_text: String? = ""
+        set(value) {
+            field = value
+            invalidate()
+        }
+    var label_3_textArray: MutableList<String> = mutableListOf()
+
     var text_color: String? = ""
         set(value) {
             field = value
@@ -124,11 +131,14 @@ open class BulletGraph @JvmOverloads constructor(
             }
         }
     var labelB: Array<CharSequence>? = null
+
+
     var range: Array<CharSequence>? = null
     var colorArray : Array<CharSequence>? = null
 
     val titleSize = resources.getDimension(R.dimen.title_text_size)
     val labelSize = resources.getDimension(R.dimen.label_text_size)
+    val lineHeight = resources.getDimension(R.dimen.label_text_line_height)
 
     var markerRect: Rect = Rect(0, 0, 0, 0)
     val labelPaint: Paint
@@ -162,6 +172,10 @@ open class BulletGraph @JvmOverloads constructor(
             if (label_2_text.isNullOrBlank()) label_2_text = ""
             label_2_textArray = label_2_text?.split("|")!!.toMutableList()
 
+            label_3_text = attributeSet.getString(R.styleable.BulletGraph_label_3_text)
+            if (label_3_text.isNullOrBlank()) label_3_text = ""
+            label_3_textArray = label_3_text?.split("|")!!.toMutableList()
+
             text_color = attributeSet.getString(R.styleable.BulletGraph_text_color)
             if (text_color.isNullOrBlank()) text_color = ""
             text_color_Array = text_color?.split("|")!!.toMutableList()
@@ -180,6 +194,7 @@ open class BulletGraph @JvmOverloads constructor(
 
             labelA = attributeSet.getTextArray(R.styleable.BulletGraph_label_1)
             labelB = attributeSet.getTextArray(R.styleable.BulletGraph_label_2)
+
             range = attributeSet.getTextArray(R.styleable.BulletGraph_range)
             colorArray = attributeSet.getTextArray(R.styleable.BulletGraph_colorArray)
 

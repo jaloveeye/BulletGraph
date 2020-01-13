@@ -78,6 +78,7 @@ class BulletCircle2 @JvmOverloads constructor(
 
                 label_1_textArray = label_1_text?.split("|")!!.toMutableList()
                 label_2_textArray = label_2_text?.split("|")!!.toMutableList()
+                label_3_textArray = label_3_text?.split("|")!!.toMutableList()
                 text_color_Array = text_color?.split("|")!!.toMutableList()
                 graph_color_Array = graph_color?.split("|")!!.toMutableList()
                 graph_range_Array = graph_range?.split("|")!!.toMutableList()
@@ -102,7 +103,9 @@ class BulletCircle2 @JvmOverloads constructor(
                  */
 //                val top = mHEIGHT.toFloat() * 0.65f
 //                val bottom = top + resources.getDimension(R.dimen.graph_height)
-                val top = mHEIGHT.toFloat() * 0.45f
+
+                var top = mHEIGHT.toFloat() * 0.45f
+                if (label_3_textArray.size > 1) top = mHEIGHT.toFloat() * 0.33f
                 val bottom = top + resources.getDimension(R.dimen.graph_height)
 
 
@@ -166,6 +169,7 @@ class BulletCircle2 @JvmOverloads constructor(
                  */
                 val labelMarginTop = resources.getDimension(R.dimen.label_margin_top)
                 val LabelABottom = bottom + labelSize + labelMarginTop
+                val LabelCBottom = LabelABottom + lineHeight
 
 
                 for (i in 0 until number) {
@@ -190,6 +194,19 @@ class BulletCircle2 @JvmOverloads constructor(
                             boundRect
                         ) / 2,
                         top - labelSize,
+                        labelPaint
+                    )
+                }
+
+                for (i in 0 until number) {
+                    canvas?.drawText(
+                        label_3_textArray.get(i).toString(),
+                        (i) * ratio + graphMargin + (ratio - getTextWidth(
+                            labelPaint,
+                            label_3_textArray.get(i).toString(),
+                            boundRect
+                        )) / 2,
+                        LabelCBottom,
                         labelPaint
                     )
                 }

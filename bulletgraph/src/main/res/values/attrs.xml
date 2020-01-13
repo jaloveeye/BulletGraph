@@ -9,6 +9,7 @@
         <attr name="isASC" format="boolean" />
         <attr name="label_1_text" format="string" />
         <attr name="label_2_text" format="string" />
+        <attr name="label_3_text" format="string" />
         <attr name="text_color" format="string" />
         <attr name="graph_color" format="string" />
         <attr name="graph_range" format="string" />
