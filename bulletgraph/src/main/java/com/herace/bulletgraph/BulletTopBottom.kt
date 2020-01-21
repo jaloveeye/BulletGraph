@@ -122,9 +122,11 @@ class BulletTopBottom @JvmOverloads constructor(
             //val paint = if (topbottom!!.toBoolean()) paints[1] else paints[2]
 
 
+            val valueTemp = if (value != -1000000 && value <= 3) 3 else value
+
             if (value != -1000000) {
                 if (topbottom!!.toBoolean()) graphRect.set(
-                    graphWidth - (graphWidth.toFloat() * value / 100) + graphMargin,
+                    graphWidth - (graphWidth.toFloat() * valueTemp / 100) + graphMargin,
                     top,
                     graphWidth + graphMargin,
                     bottom
@@ -132,7 +134,7 @@ class BulletTopBottom @JvmOverloads constructor(
                 else graphRect.set(
                     0f + graphMargin,
                     top,
-                    (graphWidth.toFloat()) * value / 100 + graphMargin,
+                    (graphWidth.toFloat()) * valueTemp / 100 + graphMargin,
                     bottom
                 )
                 canvas?.drawRoundRect(graphRect, cornerRadius, cornerRadius, paints[1])
@@ -170,12 +172,12 @@ class BulletTopBottom @JvmOverloads constructor(
             val labelTop = top - labelSize
             val labelValueText = "${value}%"
             val labelValueX =
-                if (topbottom!!.toBoolean()) graphMargin + graphWidth.toFloat() * (100f - value) / 100 - getTextWidth(
+                if (topbottom!!.toBoolean()) graphMargin + graphWidth.toFloat() * (100f - valueTemp) / 100 - getTextWidth(
                     labelPaint,
                     labelValueText,
                     boundRect
                 ) / 2
-                else graphMargin + graphWidth.toFloat() * value / 100 - getTextWidth(
+                else graphMargin + graphWidth.toFloat() * valueTemp / 100 - getTextWidth(
                     labelPaint,
                     labelValueText,
                     boundRect

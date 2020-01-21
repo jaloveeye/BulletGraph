@@ -217,7 +217,7 @@ class BulletCircle2 @JvmOverloads constructor(
                 /**
                  * Calculation to x axis coordinates to marker
                  */
-                var target = 0
+                var target = -1
                 var ratioValue = 0f
                 var markerColor = R.color.colorNormal
 
@@ -248,6 +248,23 @@ class BulletCircle2 @JvmOverloads constructor(
                         }
                     }
                 }
+
+//                if (target == -1) {
+//                    val tempValue = 3
+//                    if (value <= Integer.parseInt(graph_range_Array[0]).toFloat()) {
+//                        target = 0
+//                        val startVal = Integer.parseInt(graph_range_Array.get(1)).toFloat()
+//                        val endVal = Integer.parseInt(graph_range_Array.get(0)).toFloat()
+//                        ratioValue = (endVal + tempValue - endVal) / (startVal - endVal)
+//                        markerColor =  paints[0].color
+//                    } else if (value >= Integer.parseInt(graph_range_Array[graph_range_Array.size - 1]).toFloat()) {
+//                        target = graph_range_Array.size - 2
+//                        val startVal = Integer.parseInt(graph_range_Array.get(graph_range_Array.size - 1)).toFloat()
+//                        val endVal = Integer.parseInt(graph_range_Array.get(graph_range_Array.size - 2)).toFloat()
+//                        ratioValue = (startVal - tempValue - endVal) / (startVal - endVal)
+//                        markerColor =  paints[graph_range_Array.size - 2].color
+//                    }
+//                }
 
 
                 /**
