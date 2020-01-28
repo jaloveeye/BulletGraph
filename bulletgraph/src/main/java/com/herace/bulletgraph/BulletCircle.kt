@@ -266,7 +266,7 @@ class BulletCircle @JvmOverloads constructor(
                 )
             }
         } catch (e: Exception) {
-            Log.e("BulletGraph", e.message)
+            Log.e("BulletGraph", e.message.toString())
         }
     }
 
@@ -295,7 +295,7 @@ class BulletCircle @JvmOverloads constructor(
             paint2.isDither = true
             canvas?.drawCircle(x, y, radius2, paint2)
         } catch (e: Exception) {
-            Log.e("BulletGraph", e.message)
+            Log.e("BulletGraph", e.message.toString())
         }
     }
 }

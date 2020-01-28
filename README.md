@@ -34,43 +34,52 @@ allprojects {
 ### Usage
 
 ```xml
-  <com.herace.bulletgraph.BulletTopBottom
-        android:layout_width="300dp"
-        android:layout_height="100dp"
-        app:bgColor="#FFFFFF"
-        app:title="수축기 혈압:하위30%"
-        app:isWarning="true"
-        app:value="30"
-        app:isTop="false"
-    />
-     <com.herace.bulletgraph.BulletBlock
-        android:layout_width="400dp"
-        android:layout_height="100dp"
-        app:noOfFields="6"
-        app:bgColor="#FFFFFF"
-        app:title="단백뇨:27mg/dL로 약양성에 해당됩니다."
-        app:isWarning="true"
-        app:value="27"
-        app:isASC="true"
-        app:label_1="@array/graphB_LabelA"
-        app:label_2="@array/graphB_LabelB"
-        app:range="@array/graphB_Range"
-        />
-    <com.herace.bulletgraph.BulletCircle
-        android:layout_width="400dp"
-        android:layout_height="100dp"
-        app:noOfFields="3"
-        app:bgColor="#FFFFFF"
-        app:title="이완기 혈압"
-        app:subTitle="70mmHg으로 정상범위로 안전합니다."
-        app:isWarning="false"
-        app:value="70"
-        app:isASC="true"
-        app:label_1="@array/graphC_LabelA"
-        app:label_2="@array/graphD_LabelB"
-        app:range="@array/graphD_Range"
-        />
-    />
+     <TextView
+	android:text="@string/bullet_top_bottom"
+	android:id="@+id/title_1"
+	style="@style/SampleTextView"
+	app:layout_constraintStart_toStartOf="parent"
+	app:layout_constraintEnd_toEndOf="parent"
+	app:layout_constraintTop_toTopOf="parent"
+	/>
+    <com.herace.bulletgraph.BulletTopBottom
+	android:id="@+id/bullet_graph_1"
+	android:layout_width="match_parent"
+	android:layout_height="50dp"
+	app:layout_constraintStart_toStartOf="parent"
+	app:layout_constraintEnd_toEndOf="parent"
+	app:layout_constraintTop_toBottomOf="@+id/title_1"
+	app:bgColor="#FFFFFF"
+	app:value="1"
+	app:topbottom="true"
+	app:bt_text_color="#595757"
+	app:bt_graph_color="#62CBC9"
+	/>
+    <TextView
+	android:text="@string/bullet_circle2"
+	android:id="@+id/title_4"
+	style="@style/SampleTextView"
+	app:layout_constraintStart_toStartOf="parent"
+	app:layout_constraintEnd_toEndOf="parent"
+	app:layout_constraintTop_toBottomOf="@+id/bullet_graph_1"
+	/>
+
+    <com.herace.bulletgraph.BulletCircle2
+	android:id="@+id/bullet_graph_4"
+	android:layout_width="match_parent"
+	android:layout_height="55dp"
+	app:layout_constraintStart_toStartOf="parent"
+	app:layout_constraintEnd_toEndOf="parent"
+	app:layout_constraintTop_toBottomOf="@+id/title_4"
+	app:bgColor="#FFFFFF"
+	app:value="28"
+	app:label_1_text="중등도|주의|고도|주의"
+	app:label_2_text="4|9|19|27"
+	app:label_3_text="비만|1단계|비만|3단계"
+	app:graph_color="#D9D8D6|#62CBC9|#FF647D|#665CC7"
+	app:text_color="#595757|#00A5B5|#FF647D|#665CC7"
+	app:graph_range="0|5|10|20|28"
+	/>
 ```
 
 

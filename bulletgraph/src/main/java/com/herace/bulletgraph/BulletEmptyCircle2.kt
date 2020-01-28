@@ -172,13 +172,13 @@ class BulletEmptyCircle2 @JvmOverloads constructor(
             val labelTopText = start
             val labelBottomText = end
             if (labelTopText != null) canvas?.drawText(
-                labelTopText!!,
+                labelTopText,
                 graphMargin,
                 labelBottom,
                 labelBottomPaint
             )
             if (labelBottomText != null) canvas?.drawText(
-                labelBottomText!!,
+                labelBottomText,
                 mWIDTH - graphMargin,
                 labelBottom,
                 labelTopPaint
@@ -217,7 +217,7 @@ class BulletEmptyCircle2 @JvmOverloads constructor(
                 }
             }
         } catch (e: Exception) {
-            Log.e("Bullet Graph", e.message)
+            Log.e("Bullet Graph", e.message.toString())
         }
     }
 
@@ -245,7 +245,7 @@ class BulletEmptyCircle2 @JvmOverloads constructor(
             paint2.isDither = true
             canvas?.drawCircle(x, y, radius2, paint2)
         } catch (e: Exception) {
-            Log.e("Bullet Graph", e.message)
+            Log.e("Bullet Graph", e.message.toString())
         }
     }
 }

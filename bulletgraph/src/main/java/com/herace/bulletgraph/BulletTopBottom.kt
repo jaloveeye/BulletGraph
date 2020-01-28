@@ -189,7 +189,7 @@ class BulletTopBottom @JvmOverloads constructor(
                 drawCircle(canvas, labelValueX + temp, top, bottom,  paints[1].color)
             }
         } catch (e: Exception) {
-            Log.e("Bullet Graph", e.message)
+            Log.e("Bullet Graph", e.message.toString())
         }
     }
 
@@ -217,7 +217,7 @@ class BulletTopBottom @JvmOverloads constructor(
             paint2.isDither = true
             canvas?.drawCircle(x, y, radius2, paint2)
         } catch (e: Exception) {
-            Log.e("Bullet Graph", e.message)
+            Log.e("Bullet Graph", e.message.toString())
         }
     }
 }

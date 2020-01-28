@@ -157,7 +157,7 @@ class BulletBlock @JvmOverloads constructor(
             if (warning!!.toBoolean()) canvas?.drawBitmap(markerRed, null, markerRect, null)
             else canvas?.drawBitmap(markerBlue, null, markerRect, null)
         } catch (e: Exception) {
-            Log.e("BulletGraph", e.message)
+            Log.e("BulletGraph", e.message.toString())
         }
     }
 }

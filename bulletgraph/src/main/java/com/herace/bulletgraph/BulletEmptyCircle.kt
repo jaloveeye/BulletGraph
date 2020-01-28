@@ -208,7 +208,7 @@ class BulletEmptyCircle @JvmOverloads constructor(
                 }
             }
         } catch (e: Exception) {
-            Log.e("Bullet Graph", e.message)
+            Log.e("Bullet Graph", e.message.toString())
         }
     }
 
@@ -237,7 +237,7 @@ class BulletEmptyCircle @JvmOverloads constructor(
             paint2.isDither = true
             canvas?.drawCircle(x, y, radius2, paint2)
         } catch (e: Exception) {
-            Log.e("Bullet Graph", e.message)
+            Log.e("Bullet Graph", e.message.toString())
         }
     }
 }

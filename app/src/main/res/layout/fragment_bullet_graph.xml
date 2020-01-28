@@ -39,67 +39,13 @@
                 app:bt_text_color="#595757"
                 app:bt_graph_color="#62CBC9"
                 />
-
-            <TextView
-                android:text="@string/bullet_block"
-                android:id="@+id/title_2"
-                style="@style/SampleTextView"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/bullet_graph_1"
-                />
-            <com.herace.bulletgraph.BulletBlock
-                android:id="@+id/bullet_graph_2"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/title_2"
-                app:noOfFields="6"
-                app:bgColor="#FFFFFF"
-                app:title="단백뇨:27mg/dL로 약양성에 해당됩니다."
-                app:warning="false"
-                app:value="27"
-                app:isASC="true"
-                app:label_1="@array/graphB_LabelA"
-                app:label_2="@array/graphB_LabelB"
-                app:range="@array/graphB_Range"
-                />
-
-            <TextView
-                android:text="@string/bullet_circle"
-                android:id="@+id/title_3"
-                style="@style/SampleTextView"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/bullet_graph_2"
-                />
-            <com.herace.bulletgraph.BulletCircle
-                android:id="@+id/bullet_graph_3"
-                android:layout_width="match_parent"
-                android:layout_height="120dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/title_3"
-                app:noOfFields="3"
-                app:bgColor="#FFFFFF"
-                app:title="이완기 혈압"
-                app:subTitle="70mmHg으로 정상범위로 안전합니다."
-                app:value="25"
-                app:label_1_text="정상|주의|위험"
-                app:label_2_text="-1.0|-2.4||"
-                app:graph_color="#D9D8D6|#62CBC9|#665CC7"
-                app:text_color="#595757|#00A5B5|#665CC7"
-                app:graph_range="0|10|24|30"
-                />
-
             <TextView
                 android:text="@string/bullet_circle2"
                 android:id="@+id/title_4"
                 style="@style/SampleTextView"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/bullet_graph_3"
+                app:layout_constraintTop_toBottomOf="@+id/bullet_graph_1"
                 />
 
             <com.herace.bulletgraph.BulletCircle2
@@ -118,93 +64,7 @@
                 app:text_color="#595757|#00A5B5|#FF647D|#665CC7"
                 app:graph_range="0|5|10|20|28"
                 />
-
-            <TextView
-                android:text="@string/bullet_circle2"
-                android:id="@+id/title_8"
-                style="@style/SampleTextView"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/bullet_graph_4"
-                />
-
-            <com.herace.bulletgraph.BulletCircle2
-                android:id="@+id/bullet_graph_8"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/title_8"
-                app:bgColor="#FFFFFF"
-                app:value="0"
-                app:label_1_text="정상|주의|경고|위험"
-                app:label_2_text="4|9|19|27"
-                app:graph_color="#D9D8D6|#62CBC9|#FF647D|#665CC7"
-                app:text_color="#595757|#00A5B5|#FF647D|#665CC7"
-                app:graph_range="-10|5|10|20|28"
-                />
-
-            <TextView
-                android:text="@string/bullet_empty_circle"
-                android:id="@+id/title_5"
-                style="@style/SampleTextView"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/bullet_graph_8"
-                />
-            <com.herace.bulletgraph.BulletEmptyCircle
-                android:id="@+id/bullet_graph_5"
-                android:layout_width="match_parent"
-                android:layout_height="110dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/title_5"
-                app:bgColor="#FFFFFF"
-                app:warning="true"
-                app:value2="10"
-                app:comment="comment"
-                app:title="title"
-                />
-
-            <TextView
-                android:text="@string/bullet_empty_circle2"
-                android:id="@+id/title_6"
-                style="@style/SampleTextView"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/bullet_graph_5"
-                />
-            <com.herace.bulletgraph.BulletEmptyCircle2
-                android:id="@+id/bullet_graph_6"
-                android:layout_width="match_parent"
-                android:layout_height="80dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/title_6"
-                app:bgColor="#FFFFFF"
-                app:warning="true"
-                app:start="0"
-                app:end="108"
-                app:value3="88.5"
-                />
-
-            <com.herace.bulletgraph.BulletCircle2
-                android:id="@+id/bullet_graph_7"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/bullet_graph_6"
-                app:bgColor="#FFFFFF"
-                app:title="이완기 혈압"
-                app:subTitle="70mmHg으로 정상범위로 안전합니다."
-                app:value="-1000000"
-                app:label_1_text="정상|위험"
-                app:label_2_text="5|"
-                app:graph_color="#D9D8D6|#62CBC9"
-                app:text_color="#595757|#00A5B5"
-                app:graph_range="0|5|10"
-                />
+            
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </layout>

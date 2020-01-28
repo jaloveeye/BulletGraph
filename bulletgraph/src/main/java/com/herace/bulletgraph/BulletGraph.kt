@@ -6,6 +6,7 @@ import android.content.Context
 import android.graphics.*
 import android.os.Build.VERSION.SDK_INT
 import android.util.Log
+import androidx.core.content.res.ResourcesCompat
 import java.lang.Exception
 
 /**
@@ -263,7 +264,7 @@ open class BulletGraph @JvmOverloads constructor(
 
     fun getResourceIdToColor(resourceId: Int): Int {
         if (SDK_INT >= 23) return resources.getColor(resourceId, null)
-        else return resources.getColor(resourceId)
+        else return ResourcesCompat.getColor(context.resources, resourceId, null)
     }
 
     open fun setMarkerRect(widthTemp:Int, markerX: Float, target: Int, ratio: Float, top: Int, graphMargin: Int)  {
@@ -276,7 +277,7 @@ open class BulletGraph @JvmOverloads constructor(
 
             markerRect.set(x, y, w, h)
         } catch (e: Exception) {
-            Log.e("BulletGraph", e.message)
+            Log.e("BulletGraph", e.message.toString())
         }
     }
 
