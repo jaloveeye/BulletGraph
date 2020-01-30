@@ -57,12 +57,33 @@
                 app:layout_constraintTop_toBottomOf="@+id/title_4"
                 app:bgColor="#FFFFFF"
                 app:value="28"
-                app:label_1_text="중등도|주의|고도|주의"
+                app:label_1_text="A|B|C|D"
                 app:label_2_text="4|9|19|27"
-                app:label_3_text="비만|1단계|비만|3단계"
+                app:label_3_text="A|B|C|D"
                 app:graph_color="#D9D8D6|#62CBC9|#FF647D|#665CC7"
                 app:text_color="#595757|#00A5B5|#FF647D|#665CC7"
                 app:graph_range="0|5|10|20|28"
+                />
+
+            <TextView
+                android:text="@string/line_graph"
+                android:id="@+id/title_5"
+                style="@style/SampleTextView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bullet_graph_4"
+                />
+
+            <com.herace.bulletgraph.LineGraph
+                android:id="@+id/bullet_graph_5"
+                android:layout_width="match_parent"
+                android:layout_height="162dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/title_5"
+                app:line_bgcolor="#FFFFFF"
+                app:line_labels="1|2|3|4"
+                app:line_values="1000|2000|1500|1800"
                 />
             
         </androidx.constraintlayout.widget.ConstraintLayout>

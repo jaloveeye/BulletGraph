@@ -35,4 +35,12 @@
         <attr name="start" format="string" />
         <attr name="end" format="string" />
     </declare-styleable>
+
+    <declare-styleable name="LineGraph">
+        <attr name="line_values" format="string" />
+        <attr name="line_labels" format="string" />
+        <attr name="line_color" format="reference|string|color" />
+        <attr name="line_bgcolor" format="reference|string|color" />
+        <attr name="bottom_gap" format="string" />
+    </declare-styleable>
 </resources>

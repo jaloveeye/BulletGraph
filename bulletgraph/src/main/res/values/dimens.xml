@@ -9,4 +9,12 @@
     <dimen name="circle_radius">5dp</dimen>
     <dimen name="title_margin_top">5dp</dimen>
     <dimen name="label_margin_top">5dp</dimen>
+
+    <!-- Line Graph -->
+    <dimen name="line_graph_text_size">10sp</dimen>
+    <dimen name="line_graph_margin">0dp</dimen>
+    <dimen name="line_graph_height">3dp</dimen>
+    <dimen name="line_circle_radius">4dp</dimen>
+    <dimen name="graph_bottom_temp">50dp</dimen>
+    <dimen name="graph_line_stoke_width">3dp</dimen>
 </resources>
